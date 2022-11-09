@@ -1,0 +1,2582 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2020.4">
+  <Nodes>
+    <Node ToolID="17">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="283" y="417" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="會計科目" selected="True" type="V_WString" size="11" />
+            <SelectField field="*Unknown" selected="False" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>將輸入之會科關鍵字轉成字串</AnnotationText>
+          <DefaultAnnotationText>將輸入之會科關鍵字轉成字串</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="86">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="81">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="3389" y="54" width="793" height="299" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>整理輸出欄位與輸出Sheet</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="73">
+          <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+            <Position x="3414" y="103" width="179" height="225" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Caption>計算每月折舊費用</Caption>
+              <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+              <Disabled value="False" />
+              <Folded value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <ChildNodes>
+            <Node ToolID="75">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+                <Position x="3439" y="152" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <FormulaFields>
+                    <FormulaField expression="ToNumber([固定資產成本])/ToNumber([耐用年限(折舊率)])/12" field="每月折舊費用" size="2" type="Int16" />
+                  </FormulaFields>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText><![CDATA[每月折舊費用 = ToNumber([固定資產成本])/ToNumber([耐用年限(折舊率)])/12
+]]></DefaultAnnotationText>
+                  <Left value="False" />
+                </Annotation>
+                <MetaInfo connection="Output">
+                  <RecordInfo>
+                    <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                    <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                    <Field name="耐用年限(折舊率)" size="255" source="Formula: IF [耐用年限單位是否為年份] THEN [耐用年限(折舊率)] ELSE ToNumber([耐用年限(折舊率)])/12 ENDIF" type="V_WString" />
+                    <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                    <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                    <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                    <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                    <Field name="是否為資料列" type="Bool" />
+                    <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                    <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                    <Field name="折舊狀態" size="1073741823" source="Formula: IF (&#xA;[折舊起始年加上耐用年限] &lt;&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(折舊提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;[折舊起始年加上耐用年限] =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(本年提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;ToNumber([折舊起始年度]) =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;本期新增&quot;&#xA;&#xA;ELSE &quot;折舊中&quot;&#xA;ENDIF&#xA;" type="V_WString" />
+                    <Field name="折舊月份" size="64" source="Formula: (Multiple Sources)" type="String" />
+                    <Field name="每月折舊費用" source="Formula: ToNumber([固定資產成本])/ToNumber([耐用年限(折舊率)])/12" type="Int16" />
+                    <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                    <Field name="差異數" source="Formula: 0" type="Int16" />
+                    <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                    <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                    <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+                    <Field name="折舊起始日(格式轉換後)" size="10" source="DateTime: To yyyy-MM-dd" type="String" />
+                    <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始年度" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                    <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始月份" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                    <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始日" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                    <Field name="折舊起始年加上耐用年限" source="Formula: ToNumber([折舊起始年度])+ToNumber([耐用年限(折舊率)])" type="Int16" />
+                  </RecordInfo>
+                </MetaInfo>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+            </Node>
+          </ChildNodes>
+        </Node>
+        <Node ToolID="77">
+          <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+            <Position x="3618" y="104" width="179" height="210" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Caption>計算本期折舊費用</Caption>
+              <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+              <Disabled value="False" />
+              <Folded value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <ChildNodes>
+            <Node ToolID="76">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+                <Position x="3643" y="153" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <FormulaFields>
+                    <FormulaField expression="ToNumber([每月折舊費用])*ToNumber([折舊月份])" field="本期折舊費用" size="2" type="Int16" />
+                  </FormulaFields>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText><![CDATA[本期折舊費用 = ToNumber([每月折舊費用])*ToNumber([折舊月份])
+]]></DefaultAnnotationText>
+                  <Left value="False" />
+                </Annotation>
+                <MetaInfo connection="Output">
+                  <RecordInfo>
+                    <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                    <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                    <Field name="耐用年限(折舊率)" size="255" source="Formula: IF [耐用年限單位是否為年份] THEN [耐用年限(折舊率)] ELSE ToNumber([耐用年限(折舊率)])/12 ENDIF" type="V_WString" />
+                    <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                    <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                    <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                    <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                    <Field name="是否為資料列" type="Bool" />
+                    <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                    <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                    <Field name="折舊狀態" size="1073741823" source="Formula: IF (&#xA;[折舊起始年加上耐用年限] &lt;&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(折舊提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;[折舊起始年加上耐用年限] =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(本年提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;ToNumber([折舊起始年度]) =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;本期新增&quot;&#xA;&#xA;ELSE &quot;折舊中&quot;&#xA;ENDIF&#xA;" type="V_WString" />
+                    <Field name="折舊月份" size="64" source="Formula: (Multiple Sources)" type="String" />
+                    <Field name="每月折舊費用" source="Formula: ToNumber([固定資產成本])/ToNumber([耐用年限(折舊率)])/12" type="Int16" />
+                    <Field name="本期折舊費用" source="Formula: ToNumber([每月折舊費用])*ToNumber([折舊月份])" type="Int16" />
+                    <Field name="差異數" source="Formula: 0" type="Int16" />
+                    <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                    <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                    <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+                    <Field name="折舊起始日(格式轉換後)" size="10" source="DateTime: To yyyy-MM-dd" type="String" />
+                    <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始年度" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                    <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始月份" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                    <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始日" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                    <Field name="折舊起始年加上耐用年限" source="Formula: ToNumber([折舊起始年度])+ToNumber([耐用年限(折舊率)])" type="Int16" />
+                  </RecordInfo>
+                </MetaInfo>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+            </Node>
+          </ChildNodes>
+        </Node>
+        <Node ToolID="79">
+          <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+            <Position x="3822" y="104" width="157" height="195" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Caption>差異數</Caption>
+              <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+              <Disabled value="False" />
+              <Folded value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <ChildNodes>
+            <Node ToolID="78">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+                <Position x="3847" y="153" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <FormulaFields>
+                    <FormulaField expression="ToNumber([本期提列數]-[本期折舊費用])" field="每月折舊費用" size="2" type="Int16" />
+                  </FormulaFields>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText><![CDATA[每月折舊費用 = ToNumber([本期提列數]-[本期折舊費用])
+]]></DefaultAnnotationText>
+                  <Left value="False" />
+                </Annotation>
+                <MetaInfo connection="Output">
+                  <RecordInfo>
+                    <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                    <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                    <Field name="耐用年限(折舊率)" size="255" source="Formula: IF [耐用年限單位是否為年份] THEN [耐用年限(折舊率)] ELSE ToNumber([耐用年限(折舊率)])/12 ENDIF" type="V_WString" />
+                    <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                    <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                    <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                    <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                    <Field name="是否為資料列" type="Bool" />
+                    <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                    <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                    <Field name="折舊狀態" size="1073741823" source="Formula: IF (&#xA;[折舊起始年加上耐用年限] &lt;&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(折舊提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;[折舊起始年加上耐用年限] =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(本年提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;ToNumber([折舊起始年度]) =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;本期新增&quot;&#xA;&#xA;ELSE &quot;折舊中&quot;&#xA;ENDIF&#xA;" type="V_WString" />
+                    <Field name="折舊月份" size="64" source="Formula: (Multiple Sources)" type="String" />
+                    <Field name="每月折舊費用" source="Formula: ToNumber([本期提列數]-[本期折舊費用])" type="Int16" />
+                    <Field name="本期折舊費用" source="Formula: ToNumber([每月折舊費用])*ToNumber([折舊月份])" type="Int16" />
+                    <Field name="差異數" source="Formula: 0" type="Int16" />
+                    <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                    <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                    <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+                    <Field name="折舊起始日(格式轉換後)" size="10" source="DateTime: To yyyy-MM-dd" type="String" />
+                    <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始年度" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                    <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始月份" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                    <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始日" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                    <Field name="折舊起始年加上耐用年限" source="Formula: ToNumber([折舊起始年度])+ToNumber([耐用年限(折舊率)])" type="Int16" />
+                  </RecordInfo>
+                </MetaInfo>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+            </Node>
+          </ChildNodes>
+        </Node>
+        <Node ToolID="82">
+          <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+            <Position x="4002" y="104" width="155" height="195" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Caption>建立新工作頁</Caption>
+              <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+              <Disabled value="False" />
+              <Folded value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <ChildNodes>
+            <Node ToolID="83">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+                <Position x="4027" y="153" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <FormulaFields>
+                    <FormulaField expression="FileAddPaths(FileGetDir([FileName]), FileGetFileName([FileName]))+&quot;.xlsx|||Altreyx 折舊費用計算結果&quot;" field="FileName" size="254" type="V_WString" />
+                  </FormulaFields>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText>FileName = FileAddPaths(FileGetDir([FileName]), FileGetFileName([FileName]))+".x...</DefaultAnnotationText>
+                  <Left value="False" />
+                </Annotation>
+                <MetaInfo connection="Output">
+                  <RecordInfo>
+                    <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                    <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                    <Field name="耐用年限(折舊率)" size="255" source="Formula: IF [耐用年限單位是否為年份] THEN [耐用年限(折舊率)] ELSE ToNumber([耐用年限(折舊率)])/12 ENDIF" type="V_WString" />
+                    <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                    <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                    <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                    <Field name="FileName" size="254" source="Formula: FileAddPaths(FileGetDir([FileName]), FileGetFileName([FileName]))+&quot;.xlsx|||Altreyx 折舊費用計算結果&quot;" type="V_WString" />
+                    <Field name="是否為資料列" type="Bool" />
+                    <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                    <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                    <Field name="折舊狀態" size="1073741823" source="Formula: IF (&#xA;[折舊起始年加上耐用年限] &lt;&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(折舊提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;[折舊起始年加上耐用年限] =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(本年提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;ToNumber([折舊起始年度]) =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;本期新增&quot;&#xA;&#xA;ELSE &quot;折舊中&quot;&#xA;ENDIF&#xA;" type="V_WString" />
+                    <Field name="折舊月份" size="64" source="Formula: (Multiple Sources)" type="String" />
+                    <Field name="每月折舊費用" source="Formula: ToNumber([本期提列數]-[本期折舊費用])" type="Int16" />
+                    <Field name="本期折舊費用" source="Formula: ToNumber([每月折舊費用])*ToNumber([折舊月份])" type="Int16" />
+                    <Field name="差異數" source="Formula: 0" type="Int16" />
+                    <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                    <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                    <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+                    <Field name="折舊起始日(格式轉換後)" size="10" source="DateTime: To yyyy-MM-dd" type="String" />
+                    <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始年度" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                    <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始月份" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                    <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始日" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                    <Field name="折舊起始年加上耐用年限" source="Formula: ToNumber([折舊起始年度])+ToNumber([耐用年限(折舊率)])" type="Int16" />
+                  </RecordInfo>
+                </MetaInfo>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+            </Node>
+          </ChildNodes>
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="74">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="4205" y="53" width="137" height="165" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>儲存結果</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="84">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+            <Position x="4230" y="102" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <File MaxRecords="" FileFormat="25">./財務目錄.xlsx|||Sheet1</File>
+              <Passwords />
+              <FormatSpecificOptions>
+                <PreserveFormat>False</PreserveFormat>
+                <SkipFieldNames>False</SkipFieldNames>
+                <OutputOption>Overwrite</OutputOption>
+              </FormatSpecificOptions>
+              <MultiFile value="True" />
+              <MultiFileType>Path</MultiFileType>
+              <MultiFileField>FileName</MultiFileField>
+              <KeepField value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>財務目錄.xlsx
+Query=Sheet1</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <Dependencies>
+              <Implicit />
+            </Dependencies>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="72">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="2827" y="861" width="167" height="50" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>另一種計算方式</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="True" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="42">
+          <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+            <Position x="3019" y="909" width="142" height="50" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Caption>下個月起算</Caption>
+              <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+              <Disabled value="False" />
+              <Folded value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <ChildNodes>
+            <Node ToolID="45">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+                <Position x="3175" y="957" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <FormulaFields>
+                    <FormulaField expression="ToNumber([折舊起始月份])" field="折舊月份" size="64" type="String" />
+                  </FormulaFields>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText><![CDATA[折舊月份 = ToNumber([折舊起始月份])
+]]></DefaultAnnotationText>
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+            </Node>
+            <Node ToolID="43">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+                <Position x="3043" y="969" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <Expression>[折舊狀態] == "已提畢(本年提畢)"</Expression>
+                  <Mode>Custom</Mode>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText>[折舊狀態] == "已提畢(本年提畢)"</DefaultAnnotationText>
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+            </Node>
+            <Node ToolID="40">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+                <Position x="3043" y="1089" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <Expression>[折舊狀態] == "本期新增"</Expression>
+                  <Mode>Custom</Mode>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText>[折舊狀態] == "本期新增"</DefaultAnnotationText>
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+            </Node>
+            <Node ToolID="44">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+                <Position x="3175" y="1077" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <FormulaFields>
+                    <FormulaField expression="ToNumber(12-ToNumber([折舊起始月份]))" field="折舊月份" size="64" type="String" />
+                  </FormulaFields>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText><![CDATA[折舊月份 = ToNumber(12-ToNumber([折舊起始月份]))
+]]></DefaultAnnotationText>
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+            </Node>
+          </ChildNodes>
+        </Node>
+        <Node ToolID="54">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+            <Position x="2851" y="1197" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>Simple</Mode>
+              <Simple>
+                <Operator>IsTrue</Operator>
+                <Field>折舊起算方式是否為下個月計算</Field>
+                <Operands>
+                  <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+                  <DateType>fixed</DateType>
+                  <PeriodDate>2022-10-31 14:30:51</PeriodDate>
+                  <PeriodType>
+                  </PeriodType>
+                  <PeriodCount>0</PeriodCount>
+                  <Operand>
+                  </Operand>
+                  <StartDate>2022-10-31 14:30:51</StartDate>
+                  <EndDate>2022-10-31 14:30:51</EndDate>
+                </Operands>
+              </Simple>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>[折舊起算方式是否為下個月計算] = 1</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+        </Node>
+        <Node ToolID="41">
+          <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+            <Position x="3019" y="1245" width="142" height="50" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Caption>半個月為期</Caption>
+              <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+              <Disabled value="False" />
+              <Folded value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <ChildNodes>
+            <Node ToolID="55">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+                <Position x="3043" y="1305" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <Expression>[折舊狀態] == "已提畢(本年提畢)"</Expression>
+                  <Mode>Custom</Mode>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText>[折舊狀態] == "已提畢(本年提畢)"</DefaultAnnotationText>
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+            </Node>
+            <Node ToolID="56">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+                <Position x="3175" y="1293" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <FormulaFields>
+                    <FormulaField expression="IF ToNumber([折舊起始日]) &lt; 15 THEN &#xA;ToNumber([折舊起始月份])-0.5 &#xA;ELSE [折舊起始日] &#xA;ENDIF&#xA;" field="折舊月份" size="64" type="String" />
+                  </FormulaFields>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText>折舊月份 = IF ToNumber([折舊起始日]) &lt; 15 THEN 
+ToNumber([折舊起始月份])-0.5 
+ELSE [折舊起始日] 
+END...</DefaultAnnotationText>
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+            </Node>
+            <Node ToolID="57">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+                <Position x="3043" y="1497" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <Expression>[折舊狀態] == "本期新增"</Expression>
+                  <Mode>Custom</Mode>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText>[折舊狀態] == "本期新增"</DefaultAnnotationText>
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+            </Node>
+            <Node ToolID="58">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+                <Position x="3175" y="1485" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <FormulaFields>
+                    <FormulaField expression="IF ToNumber([折舊起始日]) &lt; 15 THEN &#xA;12-ToNumber([折舊起始月份])+0.5 &#xA;ELSE 12-ToNumber([折舊起始月份])&#xA;ENDIF&#xA;" field="折舊月份" size="64" type="String" />
+                  </FormulaFields>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText>折舊月份 = IF ToNumber([折舊起始日]) &lt; 15 THEN 
+12-ToNumber([折舊起始月份])+0.5 
+ELSE 12-ToNumb...</DefaultAnnotationText>
+                  <Left value="False" />
+                </Annotation>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+            </Node>
+          </ChildNodes>
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="36">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="2622" y="128" width="179" height="165" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>排除折舊提畢資料</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="37">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+            <Position x="2647" y="177" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Expression>[折舊狀態] != "已提畢(折舊提畢)"</Expression>
+              <Mode>Custom</Mode>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>[折舊狀態] != "已提畢(折舊提畢)"</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="True">
+              <RecordInfo>
+                <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="耐用年限(折舊率)" size="255" source="Formula: IF [耐用年限單位是否為年份] THEN [耐用年限(折舊率)] ELSE ToNumber([耐用年限(折舊率)])/12 ENDIF" type="V_WString" />
+                <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                <Field name="是否為資料列" type="Bool" />
+                <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊狀態" size="1073741823" source="Formula: IF (&#xA;[折舊起始年加上耐用年限] &lt;&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(折舊提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;[折舊起始年加上耐用年限] =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(本年提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;ToNumber([折舊起始年度]) =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;本期新增&quot;&#xA;&#xA;ELSE &quot;折舊中&quot;&#xA;ENDIF&#xA;" type="V_WString" />
+                <Field name="折舊月份" size="64" source="Formula: &quot;&quot;" type="String" />
+                <Field name="每月折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="差異數" source="Formula: 0" type="Int16" />
+                <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+                <Field name="折舊起始日(格式轉換後)" size="10" source="DateTime: To yyyy-MM-dd" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始年度" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始月份" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始日" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field name="折舊起始年加上耐用年限" source="Formula: ToNumber([折舊起始年度])+ToNumber([耐用年限(折舊率)])" type="Int16" />
+              </RecordInfo>
+            </MetaInfo>
+            <MetaInfo connection="False">
+              <RecordInfo>
+                <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="耐用年限(折舊率)" size="255" source="Formula: IF [耐用年限單位是否為年份] THEN [耐用年限(折舊率)] ELSE ToNumber([耐用年限(折舊率)])/12 ENDIF" type="V_WString" />
+                <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                <Field name="是否為資料列" type="Bool" />
+                <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊狀態" size="1073741823" source="Formula: IF (&#xA;[折舊起始年加上耐用年限] &lt;&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(折舊提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;[折舊起始年加上耐用年限] =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(本年提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;ToNumber([折舊起始年度]) =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;本期新增&quot;&#xA;&#xA;ELSE &quot;折舊中&quot;&#xA;ENDIF&#xA;" type="V_WString" />
+                <Field name="折舊月份" size="64" source="Formula: &quot;&quot;" type="String" />
+                <Field name="每月折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="差異數" source="Formula: 0" type="Int16" />
+                <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+                <Field name="折舊起始日(格式轉換後)" size="10" source="DateTime: To yyyy-MM-dd" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始年度" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始月份" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始日" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field name="折舊起始年加上耐用年限" source="Formula: ToNumber([折舊起始年度])+ToNumber([耐用年限(折舊率)])" type="Int16" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="34">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="1410" y="140" width="228" height="255" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>耐用年限轉換為耐用月份數</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="35">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+            <Position x="1435" y="189" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FormulaFields>
+                <FormulaField expression="IF [耐用年限單位是否為年份] THEN [耐用年限(折舊率)] ELSE ToNumber([耐用年限(折舊率)])/12 ENDIF" field="耐用年限(折舊率)" size="255" type="V_WString" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>耐用年限(折舊率) = IF [耐用年限單位是否為年份] THEN [耐用年限(折舊率)] ELSE ToNumber([耐用年限(折舊率)])/12 ENDI...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="耐用年限(折舊率)" size="255" source="Formula: IF [耐用年限單位是否為年份] THEN [耐用年限(折舊率)] ELSE ToNumber([耐用年限(折舊率)])/12 ENDIF" type="V_WString" />
+                <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                <Field name="是否為資料列" type="Bool" />
+                <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊狀態" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊月份" size="64" source="Formula: &quot;&quot;" type="String" />
+                <Field name="每月折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="差異數" source="Formula: 0" type="Int16" />
+                <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="25">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="558" y="116" width="444" height="189" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>新增處理過程所需欄位</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="21">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+            <Position x="583" y="165" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FormulaFields>
+                <FormulaField expression="1" field="是否處理成功" size="1" type="Bool" />
+                <FormulaField expression="&quot;&quot;" field="問題說明" size="1073741823" type="V_WString" />
+                <FormulaField expression="&quot;&quot;" field="折舊狀態" size="1073741823" type="V_WString" />
+                <FormulaField expression="&quot;&quot;" field="折舊月份" size="64" type="String" />
+                <FormulaField expression="0" field="每月折舊費用" size="2" type="Int16" />
+                <FormulaField expression="0" field="本期折舊費用" size="2" type="Int16" />
+                <FormulaField expression="0" field="差異數" size="2" type="Int16" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>新增相關欄位</AnnotationText>
+              <DefaultAnnotationText><![CDATA[是否處理成功 = 1
+問題說明 = ""
+折舊狀態 = ""
+折舊月份 = ""
+每月折舊費用 = 0
+本期折舊費用 = 0
+差異數 = 0
+]]></DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="耐用年限(折舊率)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                <Field name="是否為資料列" type="Bool" />
+                <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊狀態" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊月份" size="64" source="Formula: &quot;&quot;" type="String" />
+                <Field name="每月折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="差異數" source="Formula: 0" type="Int16" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+        </Node>
+        <Node ToolID="32">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AppendFields.AppendFields">
+            <Position x="703" y="177" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <CartesianMode>Error</CartesianMode>
+              <SelectConfiguration>
+                <Configuration outputConnection="Output">
+                  <OrderChanged value="False" />
+                  <CommaDecimal value="False" />
+                  <SelectFields>
+                    <SelectField field="Source_折舊起算方式是否為下個月計算" selected="True" input="Source_" type="Bool" size="1" />
+                    <SelectField field="*Unknown" selected="True" />
+                  </SelectFields>
+                </Configuration>
+              </SelectConfiguration>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name>新增折舊起算方式欄位</Name>
+              <DefaultAnnotationText>新增折舊起算方式欄位</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="耐用年限(折舊率)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                <Field name="是否為資料列" type="Bool" />
+                <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊狀態" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊月份" size="64" source="Formula: &quot;&quot;" type="String" />
+                <Field name="每月折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="差異數" source="Formula: 0" type="Int16" />
+                <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxAppendFields" />
+        </Node>
+        <Node ToolID="33">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AppendFields.AppendFields">
+            <Position x="871" y="189" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <CartesianMode>Error</CartesianMode>
+              <SelectConfiguration>
+                <Configuration outputConnection="Output">
+                  <OrderChanged value="False" />
+                  <CommaDecimal value="False" />
+                  <SelectFields>
+                    <SelectField field="Source_耐用年限單位是否為年份" selected="True" input="Source_" type="Bool" size="1" />
+                    <SelectField field="Source_折舊起算方式是否為下個月計算" selected="True" rename="Source_折舊起算方式是否為下個月計算" input="Source_" type="Bool" size="1" />
+                    <SelectField field="*Unknown" selected="True" />
+                  </SelectFields>
+                </Configuration>
+              </SelectConfiguration>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name>新增耐用年限單位欄位</Name>
+              <DefaultAnnotationText>新增耐用年限單位欄位</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="耐用年限(折舊率)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                <Field name="是否為資料列" type="Bool" />
+                <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊狀態" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊月份" size="64" source="Formula: &quot;&quot;" type="String" />
+                <Field name="每月折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="差異數" source="Formula: 0" type="Int16" />
+                <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxAppendFields" />
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="19">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="1662" y="128" width="635" height="346" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>日期格式轉換</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="18">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.DateTime.DateTime">
+            <Position x="1687" y="188" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <IsFrom value="False" />
+              <InputFieldName>折舊起始日期</InputFieldName>
+              <Language>English</Language>
+              <Format>yyyy-MM-dd</Format>
+              <OutputFieldName>折舊起始日(格式轉換後)</OutputFieldName>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>轉換 折舊起始日 =&gt; 
+yyyy-MM-dd</AnnotationText>
+              <DefaultAnnotationText>Convert 折舊起始日期 From:
+yyyy-MM-dd</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="耐用年限(折舊率)" size="255" source="Formula: IF [耐用年限單位是否為年份] THEN [耐用年限(折舊率)] ELSE ToNumber([耐用年限(折舊率)])/12 ENDIF" type="V_WString" />
+                <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                <Field name="是否為資料列" type="Bool" />
+                <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊狀態" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊月份" size="64" source="Formula: &quot;&quot;" type="String" />
+                <Field name="每月折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="差異數" source="Formula: 0" type="Int16" />
+                <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+                <Field name="折舊起始日(格式轉換後)" source="DateTime: To yyyy-MM-dd" type="Date" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDateTime" />
+        </Node>
+        <Node ToolID="22">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+            <Position x="1915" y="189" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>Simple</Mode>
+              <Simple>
+                <Operator>IsNotNull</Operator>
+                <Field>折舊起始日(格式轉換後)</Field>
+                <Operands>
+                  <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+                  <DateType>fixed</DateType>
+                  <PeriodDate>2022-10-28 11:38:34</PeriodDate>
+                  <PeriodType>days</PeriodType>
+                  <PeriodCount>0</PeriodCount>
+                  <Operand>2022-10-28</Operand>
+                  <StartDate>2022-10-28 11:38:34</StartDate>
+                  <EndDate>2022-10-28 11:38:34</EndDate>
+                </Operands>
+              </Simple>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>篩選成功轉換日期格式的資料</AnnotationText>
+              <DefaultAnnotationText>!IsNull([折舊起始日(格式轉換後)])</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="True">
+              <RecordInfo>
+                <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="耐用年限(折舊率)" size="255" source="Formula: IF [耐用年限單位是否為年份] THEN [耐用年限(折舊率)] ELSE ToNumber([耐用年限(折舊率)])/12 ENDIF" type="V_WString" />
+                <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                <Field name="是否為資料列" type="Bool" />
+                <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊狀態" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊月份" size="64" source="Formula: &quot;&quot;" type="String" />
+                <Field name="每月折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="差異數" source="Formula: 0" type="Int16" />
+                <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+                <Field name="折舊起始日(格式轉換後)" size="10" source="DateTime: To yyyy-MM-dd" type="String" />
+              </RecordInfo>
+            </MetaInfo>
+            <MetaInfo connection="False">
+              <RecordInfo>
+                <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="耐用年限(折舊率)" size="255" source="Formula: IF [耐用年限單位是否為年份] THEN [耐用年限(折舊率)] ELSE ToNumber([耐用年限(折舊率)])/12 ENDIF" type="V_WString" />
+                <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                <Field name="是否為資料列" type="Bool" />
+                <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊狀態" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊月份" size="64" source="Formula: &quot;&quot;" type="String" />
+                <Field name="每月折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="差異數" source="Formula: 0" type="Int16" />
+                <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+                <Field name="折舊起始日(格式轉換後)" size="10" source="DateTime: To yyyy-MM-dd" type="String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+        </Node>
+        <Node ToolID="23">
+          <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+            <Position x="2058" y="284" width="204" height="165" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Caption>寫入日期格式錯誤資訊</Caption>
+              <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+              <Disabled value="False" />
+              <Folded value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <ChildNodes>
+            <Node ToolID="24">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+                <Position x="2083" y="333" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <FormulaFields>
+                    <FormulaField expression="0" field="是否處理成功" size="1" type="Bool" />
+                    <FormulaField expression="&quot;折舊起始日期格式錯誤&quot;" field="問題說明" size="1073741823" type="V_WString" />
+                  </FormulaFields>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <AnnotationText><![CDATA[更改執行狀態並添加問題說明
+]]></AnnotationText>
+                  <DefaultAnnotationText><![CDATA[是否處理成功 = 0
+問題說明 = "折舊起始日期格式錯誤"
+]]></DefaultAnnotationText>
+                  <Left value="False" />
+                </Annotation>
+                <MetaInfo connection="Output">
+                  <RecordInfo>
+                    <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                    <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                    <Field name="耐用年限(折舊率)" size="255" source="Formula: IF [耐用年限單位是否為年份] THEN [耐用年限(折舊率)] ELSE ToNumber([耐用年限(折舊率)])/12 ENDIF" type="V_WString" />
+                    <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                    <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                    <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                    <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                    <Field name="是否為資料列" type="Bool" />
+                    <Field name="是否處理成功" source="Formula: 0" type="Bool" />
+                    <Field name="問題說明" size="1073741823" source="Formula: &quot;折舊起始日期格式錯誤&quot;" type="V_WString" />
+                    <Field name="折舊狀態" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                    <Field name="折舊月份" size="64" source="Formula: &quot;&quot;" type="String" />
+                    <Field name="每月折舊費用" source="Formula: 0" type="Int16" />
+                    <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                    <Field name="差異數" source="Formula: 0" type="Int16" />
+                    <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                    <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                    <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+                    <Field name="折舊起始日(格式轉換後)" size="10" source="DateTime: To yyyy-MM-dd" type="String" />
+                  </RecordInfo>
+                </MetaInfo>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+            </Node>
+          </ChildNodes>
+        </Node>
+        <Node ToolID="27">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.TextToColumns.TextToColumns">
+            <Position x="2083" y="177" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Field>折舊起始日(格式轉換後)</Field>
+              <ErrorHandling>Last</ErrorHandling>
+              <RootName>折舊起始日(格式轉換後)</RootName>
+              <Delimeters value="-" />
+              <NumFields value="3" />
+              <Flags value="0" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>將日期分成 年, 月, 日三個欄位</AnnotationText>
+              <DefaultAnnotationText>將日期分成 年, 月, 日三個欄位</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="耐用年限(折舊率)" size="255" source="Formula: IF [耐用年限單位是否為年份] THEN [耐用年限(折舊率)] ELSE ToNumber([耐用年限(折舊率)])/12 ENDIF" type="V_WString" />
+                <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                <Field name="是否為資料列" type="Bool" />
+                <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊狀態" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊月份" size="64" source="Formula: &quot;&quot;" type="String" />
+                <Field name="每月折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="差異數" source="Formula: 0" type="Int16" />
+                <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+                <Field name="折舊起始日(格式轉換後)" size="10" source="DateTime: To yyyy-MM-dd" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始日(格式轉換後)1" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始日(格式轉換後)2" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始日(格式轉換後)3" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextToColumns" />
+        </Node>
+        <Node ToolID="28">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="1807" y="189" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="折舊起始日(格式轉換後)" selected="True" type="String" size="10" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>將轉換後的日期改成String格式</AnnotationText>
+              <DefaultAnnotationText>將轉換後的日期改成String格式</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="耐用年限(折舊率)" size="255" source="Formula: IF [耐用年限單位是否為年份] THEN [耐用年限(折舊率)] ELSE ToNumber([耐用年限(折舊率)])/12 ENDIF" type="V_WString" />
+                <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                <Field name="是否為資料列" type="Bool" />
+                <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊狀態" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊月份" size="64" source="Formula: &quot;&quot;" type="String" />
+                <Field name="每月折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="差異數" source="Formula: 0" type="Int16" />
+                <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+                <Field name="折舊起始日(格式轉換後)" size="10" source="DateTime: To yyyy-MM-dd" type="String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+        <Node ToolID="29">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+            <Position x="2203" y="177" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="折舊起始日(格式轉換後)1" selected="True" rename="折舊起始年度" />
+                <SelectField field="折舊起始日(格式轉換後)2" selected="True" rename="折舊起始月份" />
+                <SelectField field="折舊起始日(格式轉換後)3" selected="True" rename="折舊起始日" />
+                <SelectField field="*Unknown" selected="True" />
+              </SelectFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>將欄位更名</AnnotationText>
+              <DefaultAnnotationText>將欄位重新命名</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="耐用年限(折舊率)" size="255" source="Formula: IF [耐用年限單位是否為年份] THEN [耐用年限(折舊率)] ELSE ToNumber([耐用年限(折舊率)])/12 ENDIF" type="V_WString" />
+                <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                <Field name="是否為資料列" type="Bool" />
+                <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊狀態" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊月份" size="64" source="Formula: &quot;&quot;" type="String" />
+                <Field name="每月折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="差異數" source="Formula: 0" type="Int16" />
+                <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+                <Field name="折舊起始日(格式轉換後)" size="10" source="DateTime: To yyyy-MM-dd" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始年度" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始月份" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始日" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="12">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="54" y="128" width="168" height="648" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>輸入</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="1">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+            <Position x="79" y="177" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Passwords />
+              <File OutputFileName="Path" RecordLimit="" SearchSubDirs="False" FileFormat="25">C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`</File>
+              <FormatSpecificOptions>
+                <FirstRowData>False</FirstRowData>
+                <ImportLine>1</ImportLine>
+              </FormatSpecificOptions>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>財務目錄.xlsx
+Query=`Sheet1$`</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <Dependencies>
+              <Implicit />
+            </Dependencies>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="耐用年限(折舊率)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+        </Node>
+        <Node ToolID="11">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
+            <Position x="91" y="417" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <NumRows value="1" />
+              <Fields>
+                <Field name="會計科目" />
+              </Fields>
+              <Data>
+                <r>
+                  <c>2060300034</c>
+                </r>
+              </Data>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>不處理之會科關鍵字</AnnotationText>
+              <DefaultAnnotationText>不處理之會科科目</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="會計科目" source="TextInput:" type="Int32" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
+        </Node>
+        <Node ToolID="30">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
+            <Position x="91" y="525" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <NumRows value="1" />
+              <Fields>
+                <Field name="折舊起算方式是否為下個月計算" />
+              </Fields>
+              <Data>
+                <r>
+                  <c>1</c>
+                </r>
+              </Data>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>折舊起算方式是否為下個月計算，若否則是15天為期</AnnotationText>
+              <DefaultAnnotationText>是否為下個月計算，若否則是15天為期</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Byte" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
+        </Node>
+        <Node ToolID="31">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
+            <Position x="90" y="645" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <NumRows value="1" />
+              <Fields>
+                <Field name="耐用年限單位是否為年份" />
+              </Fields>
+              <Data>
+                <r>
+                  <c>0</c>
+                </r>
+              </Data>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>耐用年限單位是否為年份，若否則為月份</AnnotationText>
+              <DefaultAnnotationText>耐用年限單位是否為年份，若否則為月份</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="耐用年限單位是否為年份" source="TextInput:" type="Byte" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="9">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="1110" y="152" width="276" height="165" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>移除不須計算的會科</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="13">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+            <Position x="1255" y="201" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>Simple</Mode>
+              <Simple>
+                <Operator>IsNull</Operator>
+                <Field>會計科目</Field>
+                <Operands>
+                  <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+                  <DateType>fixed</DateType>
+                  <PeriodDate>2022-10-28 11:15:17</PeriodDate>
+                  <PeriodType>
+                  </PeriodType>
+                  <PeriodCount>0</PeriodCount>
+                  <Operand>
+                  </Operand>
+                  <StartDate>2022-10-28 11:15:17</StartDate>
+                  <EndDate>2022-10-28 11:15:17</EndDate>
+                </Operands>
+              </Simple>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>篩選前步驟符合的資料</AnnotationText>
+              <DefaultAnnotationText>IsNull([會計科目])</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="True">
+              <RecordInfo>
+                <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="耐用年限(折舊率)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                <Field name="是否為資料列" type="Bool" />
+                <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊狀態" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊月份" size="64" source="Formula: &quot;&quot;" type="String" />
+                <Field name="每月折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="差異數" source="Formula: 0" type="Int16" />
+                <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+              </RecordInfo>
+            </MetaInfo>
+            <MetaInfo connection="False">
+              <RecordInfo>
+                <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="耐用年限(折舊率)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                <Field name="是否為資料列" type="Bool" />
+                <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊狀態" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊月份" size="64" source="Formula: &quot;&quot;" type="String" />
+                <Field name="每月折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="差異數" source="Formula: 0" type="Int16" />
+                <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+        </Node>
+        <Node ToolID="16">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.FindReplace.FindReplace">
+            <Position x="1135" y="201" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FieldFind>資產分類(編號)</FieldFind>
+              <FieldSearch>會計科目</FieldSearch>
+              <ReplaceFoundField>會計科目</ReplaceFoundField>
+              <FindMode>FindAny</FindMode>
+              <NoCase value="False" />
+              <MatchWholeWord value="False" />
+              <ReplaceMode>Append</ReplaceMode>
+              <ReplaceMultipleFound value="True" />
+              <ReplaceAppendFields>
+                <Field field="會計科目" />
+              </ReplaceAppendFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>判斷哪些資料包含會科關鍵字</AnnotationText>
+              <DefaultAnnotationText>判斷哪些資料包含篩選會科關鍵字</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="耐用年限(折舊率)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                <Field name="是否為資料列" type="Bool" />
+                <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊狀態" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊月份" size="64" source="Formula: &quot;&quot;" type="String" />
+                <Field name="每月折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="差異數" source="Formula: 0" type="Int16" />
+                <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFindReplace" />
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="8">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="2322" y="128" width="276" height="285" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>分類已提畢/本期新增/折舊中</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="38">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+            <Position x="2347" y="177" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FormulaFields>
+                <FormulaField expression="ToNumber([折舊起始年度])+ToNumber([耐用年限(折舊率)])" field="折舊起始年加上耐用年限" size="2" type="Int16" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText><![CDATA[算出折舊起始年加上耐用年限 = 
+ToNumber([折舊起始年度])+ToNumber([耐用年限(折舊率)])
+]]></AnnotationText>
+              <DefaultAnnotationText><![CDATA[折舊起始年加上耐用年限 = ToNumber([折舊起始年度])+ToNumber([耐用年限(折舊率)])
+]]></DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="耐用年限(折舊率)" size="255" source="Formula: IF [耐用年限單位是否為年份] THEN [耐用年限(折舊率)] ELSE ToNumber([耐用年限(折舊率)])/12 ENDIF" type="V_WString" />
+                <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                <Field name="是否為資料列" type="Bool" />
+                <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊狀態" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊月份" size="64" source="Formula: &quot;&quot;" type="String" />
+                <Field name="每月折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="差異數" source="Formula: 0" type="Int16" />
+                <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+                <Field name="折舊起始日(格式轉換後)" size="10" source="DateTime: To yyyy-MM-dd" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始年度" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始月份" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始日" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field name="折舊起始年加上耐用年限" source="Formula: ToNumber([折舊起始年度])+ToNumber([耐用年限(折舊率)])" type="Int16" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+        </Node>
+        <Node ToolID="26">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+            <Position x="2467" y="177" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <FormulaFields>
+                <FormulaField expression="IF (&#xA;[折舊起始年加上耐用年限] &lt;&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(折舊提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;[折舊起始年加上耐用年限] =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(本年提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;ToNumber([折舊起始年度]) =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;本期新增&quot;&#xA;&#xA;ELSE &quot;折舊中&quot;&#xA;ENDIF&#xA;" field="折舊狀態" size="1073741823" type="V_WString" />
+              </FormulaFields>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>計算折舊狀態 = IF (
+ToNumber([折舊起始年度])+ToNumber([耐用年限(折舊率)])) &lt;
+ToNumber((DateTimeYear(D...</AnnotationText>
+              <DefaultAnnotationText>折舊狀態 = IF (
+[折舊起始年加上耐用年限] &lt;
+ToNumber(DateTimeYear(DateTimeNow())))
+THEN "已提畢(折舊提...</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="耐用年限(折舊率)" size="255" source="Formula: IF [耐用年限單位是否為年份] THEN [耐用年限(折舊率)] ELSE ToNumber([耐用年限(折舊率)])/12 ENDIF" type="V_WString" />
+                <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                <Field name="是否為資料列" type="Bool" />
+                <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊狀態" size="1073741823" source="Formula: IF (&#xA;[折舊起始年加上耐用年限] &lt;&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(折舊提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;[折舊起始年加上耐用年限] =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(本年提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;ToNumber([折舊起始年度]) =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;本期新增&quot;&#xA;&#xA;ELSE &quot;折舊中&quot;&#xA;ENDIF&#xA;" type="V_WString" />
+                <Field name="折舊月份" size="64" source="Formula: &quot;&quot;" type="String" />
+                <Field name="每月折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="差異數" source="Formula: 0" type="Int16" />
+                <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+                <Field name="折舊起始日(格式轉換後)" size="10" source="DateTime: To yyyy-MM-dd" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始年度" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始月份" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始日" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field name="折舊起始年加上耐用年限" source="Formula: ToNumber([折舊起始年度])+ToNumber([耐用年限(折舊率)])" type="Int16" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="2">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="246" y="128" width="288" height="165" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>移除標題或小計等非必要欄位</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="6">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.RegEx.RegEx">
+            <Position x="271" y="177" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Field>資產分類(編號)</Field>
+              <RegExExpression value="[a-zA-Z0-9]+" />
+              <CaseInsensitve value="True" />
+              <Method>Match</Method>
+              <Replace expression="">
+                <CopyUnmatched value="True" />
+              </Replace>
+              <ParseSimple>
+                <SplitToRows value="False" />
+                <RootName>資產分類(編號)</RootName>
+                <NumFields value="3" />
+                <ErrorHandling>Warn</ErrorHandling>
+              </ParseSimple>
+              <ParseComplex>
+                <Field field="No Marked Groups Found" type="No Marked Groups Found" size="No Marked Groups Found" />
+              </ParseComplex>
+              <Match>
+                <Field>是否為資料列</Field>
+                <ErrorUnmatched value="False" />
+              </Match>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>資產編號僅包含 a-z, A-Z, 0-9</AnnotationText>
+              <DefaultAnnotationText>資產編號僅包含 a-z, A-Z, 0-9</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="耐用年限(折舊率)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                <Field name="是否為資料列" type="Bool" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxRegEx" />
+        </Node>
+        <Node ToolID="7">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+            <Position x="403" y="177" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>Simple</Mode>
+              <Simple>
+                <Operator>IsTrue</Operator>
+                <Field>是否為資料列</Field>
+                <Operands>
+                  <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+                  <DateType>fixed</DateType>
+                  <PeriodDate>2022-10-28 14:43:02</PeriodDate>
+                  <PeriodType>
+                  </PeriodType>
+                  <PeriodCount>0</PeriodCount>
+                  <Operand>
+                  </Operand>
+                  <StartDate>2022-10-28 14:43:02</StartDate>
+                  <EndDate>2022-10-28 14:43:02</EndDate>
+                </Operands>
+              </Simple>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <AnnotationText>篩選前步驟符合的資料</AnnotationText>
+              <DefaultAnnotationText>[是否為資料列] = 1</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="True">
+              <RecordInfo>
+                <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="耐用年限(折舊率)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                <Field name="是否為資料列" type="Bool" />
+              </RecordInfo>
+            </MetaInfo>
+            <MetaInfo connection="False">
+              <RecordInfo>
+                <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="耐用年限(折舊率)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                <Field name="是否為資料列" type="Bool" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="39">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="2826" y="55" width="541" height="778" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>計算折舊月份</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="62">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+            <Position x="2851" y="164" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>Simple</Mode>
+              <Simple>
+                <Operator>=</Operator>
+                <Field>折舊狀態</Field>
+                <Operands>
+                  <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+                  <DateType>fixed</DateType>
+                  <PeriodDate>2022-10-31 15:02:54</PeriodDate>
+                  <PeriodType>
+                  </PeriodType>
+                  <PeriodCount>0</PeriodCount>
+                  <Operand>本期新增</Operand>
+                  <StartDate>2022-10-31 15:02:54</StartDate>
+                  <EndDate>2022-10-31 15:02:54</EndDate>
+                </Operands>
+              </Simple>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>[折舊狀態] = "本期新增"</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="True">
+              <RecordInfo>
+                <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="耐用年限(折舊率)" size="255" source="Formula: IF [耐用年限單位是否為年份] THEN [耐用年限(折舊率)] ELSE ToNumber([耐用年限(折舊率)])/12 ENDIF" type="V_WString" />
+                <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                <Field name="是否為資料列" type="Bool" />
+                <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊狀態" size="1073741823" source="Formula: IF (&#xA;[折舊起始年加上耐用年限] &lt;&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(折舊提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;[折舊起始年加上耐用年限] =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(本年提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;ToNumber([折舊起始年度]) =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;本期新增&quot;&#xA;&#xA;ELSE &quot;折舊中&quot;&#xA;ENDIF&#xA;" type="V_WString" />
+                <Field name="折舊月份" size="64" source="Formula: &quot;&quot;" type="String" />
+                <Field name="每月折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="差異數" source="Formula: 0" type="Int16" />
+                <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+                <Field name="折舊起始日(格式轉換後)" size="10" source="DateTime: To yyyy-MM-dd" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始年度" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始月份" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始日" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field name="折舊起始年加上耐用年限" source="Formula: ToNumber([折舊起始年度])+ToNumber([耐用年限(折舊率)])" type="Int16" />
+              </RecordInfo>
+            </MetaInfo>
+            <MetaInfo connection="False">
+              <RecordInfo>
+                <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="耐用年限(折舊率)" size="255" source="Formula: IF [耐用年限單位是否為年份] THEN [耐用年限(折舊率)] ELSE ToNumber([耐用年限(折舊率)])/12 ENDIF" type="V_WString" />
+                <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                <Field name="是否為資料列" type="Bool" />
+                <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊狀態" size="1073741823" source="Formula: IF (&#xA;[折舊起始年加上耐用年限] &lt;&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(折舊提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;[折舊起始年加上耐用年限] =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(本年提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;ToNumber([折舊起始年度]) =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;本期新增&quot;&#xA;&#xA;ELSE &quot;折舊中&quot;&#xA;ENDIF&#xA;" type="V_WString" />
+                <Field name="折舊月份" size="64" source="Formula: &quot;&quot;" type="String" />
+                <Field name="每月折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="差異數" source="Formula: 0" type="Int16" />
+                <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+                <Field name="折舊起始日(格式轉換後)" size="10" source="DateTime: To yyyy-MM-dd" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始年度" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始月份" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始日" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field name="折舊起始年加上耐用年限" source="Formula: ToNumber([折舊起始年度])+ToNumber([耐用年限(折舊率)])" type="Int16" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+        </Node>
+        <Node ToolID="63">
+          <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+            <Position x="2982" y="104" width="155" height="255" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Caption>本期新增</Caption>
+              <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+              <Disabled value="False" />
+              <Folded value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <ChildNodes>
+            <Node ToolID="65">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+                <Position x="3007" y="153" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <FormulaFields>
+                    <FormulaField expression="IF ToNumber([折舊起始日]) &lt; 15 THEN &#xA;12-ToNumber([折舊起始月份])+0.5&#xA;ELSE 12-ToNumber([折舊起始月份])&#xA;ENDIF&#xA;" field="折舊月份" size="64" type="String" />
+                  </FormulaFields>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText>折舊月份 = IF ToNumber([折舊起始日]) &lt; 15 THEN 
+12-ToNumber([折舊起始月份])+0.5
+ELSE 12-ToNumbe...</DefaultAnnotationText>
+                  <Left value="False" />
+                </Annotation>
+                <MetaInfo connection="Output">
+                  <RecordInfo>
+                    <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                    <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                    <Field name="耐用年限(折舊率)" size="255" source="Formula: IF [耐用年限單位是否為年份] THEN [耐用年限(折舊率)] ELSE ToNumber([耐用年限(折舊率)])/12 ENDIF" type="V_WString" />
+                    <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                    <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                    <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                    <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                    <Field name="是否為資料列" type="Bool" />
+                    <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                    <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                    <Field name="折舊狀態" size="1073741823" source="Formula: IF (&#xA;[折舊起始年加上耐用年限] &lt;&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(折舊提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;[折舊起始年加上耐用年限] =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(本年提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;ToNumber([折舊起始年度]) =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;本期新增&quot;&#xA;&#xA;ELSE &quot;折舊中&quot;&#xA;ENDIF&#xA;" type="V_WString" />
+                    <Field name="折舊月份" size="64" source="Formula: IF ToNumber([折舊起始日]) &lt; 15 THEN &#xA;12-ToNumber([折舊起始月份])+0.5&#xA;ELSE 12-ToNumber([折舊起始月份])&#xA;ENDIF&#xA;" type="String" />
+                    <Field name="每月折舊費用" source="Formula: 0" type="Int16" />
+                    <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                    <Field name="差異數" source="Formula: 0" type="Int16" />
+                    <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                    <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                    <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+                    <Field name="折舊起始日(格式轉換後)" size="10" source="DateTime: To yyyy-MM-dd" type="String" />
+                    <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始年度" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                    <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始月份" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                    <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始日" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                    <Field name="折舊起始年加上耐用年限" source="Formula: ToNumber([折舊起始年度])+ToNumber([耐用年限(折舊率)])" type="Int16" />
+                  </RecordInfo>
+                </MetaInfo>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+            </Node>
+          </ChildNodes>
+        </Node>
+        <Node ToolID="66">
+          <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+            <Position x="2982" y="380" width="156" height="255" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Caption>本年提畢</Caption>
+              <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+              <Disabled value="False" />
+              <Folded value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <ChildNodes>
+            <Node ToolID="68">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+                <Position x="3007" y="429" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <FormulaFields>
+                    <FormulaField expression="IF ToNumber([折舊起始日]) &lt; 15 THEN &#xA;ToNumber([折舊起始月份])-0.5 &#xA;ELSE [折舊起始日] &#xA;ENDIF&#xA;" field="折舊月份" size="64" type="String" />
+                  </FormulaFields>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText>折舊月份 = IF ToNumber([折舊起始日]) &lt; 15 THEN 
+ToNumber([折舊起始月份])-0.5 
+ELSE [折舊起始日] 
+END...</DefaultAnnotationText>
+                  <Left value="False" />
+                </Annotation>
+                <MetaInfo connection="Output">
+                  <RecordInfo>
+                    <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                    <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                    <Field name="耐用年限(折舊率)" size="255" source="Formula: IF [耐用年限單位是否為年份] THEN [耐用年限(折舊率)] ELSE ToNumber([耐用年限(折舊率)])/12 ENDIF" type="V_WString" />
+                    <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                    <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                    <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                    <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                    <Field name="是否為資料列" type="Bool" />
+                    <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                    <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                    <Field name="折舊狀態" size="1073741823" source="Formula: IF (&#xA;[折舊起始年加上耐用年限] &lt;&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(折舊提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;[折舊起始年加上耐用年限] =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(本年提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;ToNumber([折舊起始年度]) =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;本期新增&quot;&#xA;&#xA;ELSE &quot;折舊中&quot;&#xA;ENDIF&#xA;" type="V_WString" />
+                    <Field name="折舊月份" size="64" source="Formula: IF ToNumber([折舊起始日]) &lt; 15 THEN &#xA;ToNumber([折舊起始月份])-0.5 &#xA;ELSE [折舊起始日] &#xA;ENDIF&#xA;" type="String" />
+                    <Field name="每月折舊費用" source="Formula: 0" type="Int16" />
+                    <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                    <Field name="差異數" source="Formula: 0" type="Int16" />
+                    <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                    <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                    <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+                    <Field name="折舊起始日(格式轉換後)" size="10" source="DateTime: To yyyy-MM-dd" type="String" />
+                    <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始年度" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                    <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始月份" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                    <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始日" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                    <Field name="折舊起始年加上耐用年限" source="Formula: ToNumber([折舊起始年度])+ToNumber([耐用年限(折舊率)])" type="Int16" />
+                  </RecordInfo>
+                </MetaInfo>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+            </Node>
+          </ChildNodes>
+        </Node>
+        <Node ToolID="67">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+            <Position x="2863" y="441" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>Simple</Mode>
+              <Simple>
+                <Operator>=</Operator>
+                <Field>折舊狀態</Field>
+                <Operands>
+                  <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+                  <DateType>fixed</DateType>
+                  <PeriodDate>2022-10-31 15:02:54</PeriodDate>
+                  <PeriodType>
+                  </PeriodType>
+                  <PeriodCount>0</PeriodCount>
+                  <Operand>已提畢(本年提畢)</Operand>
+                  <StartDate>2022-10-31 15:02:54</StartDate>
+                  <EndDate>2022-10-31 15:02:54</EndDate>
+                </Operands>
+              </Simple>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>[折舊狀態] = "已提畢(本年提畢)"</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="True">
+              <RecordInfo>
+                <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="耐用年限(折舊率)" size="255" source="Formula: IF [耐用年限單位是否為年份] THEN [耐用年限(折舊率)] ELSE ToNumber([耐用年限(折舊率)])/12 ENDIF" type="V_WString" />
+                <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                <Field name="是否為資料列" type="Bool" />
+                <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊狀態" size="1073741823" source="Formula: IF (&#xA;[折舊起始年加上耐用年限] &lt;&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(折舊提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;[折舊起始年加上耐用年限] =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(本年提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;ToNumber([折舊起始年度]) =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;本期新增&quot;&#xA;&#xA;ELSE &quot;折舊中&quot;&#xA;ENDIF&#xA;" type="V_WString" />
+                <Field name="折舊月份" size="64" source="Formula: &quot;&quot;" type="String" />
+                <Field name="每月折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="差異數" source="Formula: 0" type="Int16" />
+                <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+                <Field name="折舊起始日(格式轉換後)" size="10" source="DateTime: To yyyy-MM-dd" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始年度" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始月份" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始日" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field name="折舊起始年加上耐用年限" source="Formula: ToNumber([折舊起始年度])+ToNumber([耐用年限(折舊率)])" type="Int16" />
+              </RecordInfo>
+            </MetaInfo>
+            <MetaInfo connection="False">
+              <RecordInfo>
+                <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="耐用年限(折舊率)" size="255" source="Formula: IF [耐用年限單位是否為年份] THEN [耐用年限(折舊率)] ELSE ToNumber([耐用年限(折舊率)])/12 ENDIF" type="V_WString" />
+                <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                <Field name="是否為資料列" type="Bool" />
+                <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊狀態" size="1073741823" source="Formula: IF (&#xA;[折舊起始年加上耐用年限] &lt;&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(折舊提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;[折舊起始年加上耐用年限] =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(本年提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;ToNumber([折舊起始年度]) =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;本期新增&quot;&#xA;&#xA;ELSE &quot;折舊中&quot;&#xA;ENDIF&#xA;" type="V_WString" />
+                <Field name="折舊月份" size="64" source="Formula: &quot;&quot;" type="String" />
+                <Field name="每月折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="差異數" source="Formula: 0" type="Int16" />
+                <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+                <Field name="折舊起始日(格式轉換後)" size="10" source="DateTime: To yyyy-MM-dd" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始年度" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始月份" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始日" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field name="折舊起始年加上耐用年限" source="Formula: ToNumber([折舊起始年度])+ToNumber([耐用年限(折舊率)])" type="Int16" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+        </Node>
+        <Node ToolID="69">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+            <Position x="2863" y="717" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Mode>Simple</Mode>
+              <Simple>
+                <Operator>=</Operator>
+                <Field>折舊狀態</Field>
+                <Operands>
+                  <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+                  <DateType>fixed</DateType>
+                  <PeriodDate>2022-10-31 15:02:54</PeriodDate>
+                  <PeriodType>
+                  </PeriodType>
+                  <PeriodCount>0</PeriodCount>
+                  <Operand>折舊中</Operand>
+                  <StartDate>2022-10-31 15:02:54</StartDate>
+                  <EndDate>2022-10-31 15:02:54</EndDate>
+                </Operands>
+              </Simple>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>[折舊狀態] = "折舊中"</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="True">
+              <RecordInfo>
+                <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="耐用年限(折舊率)" size="255" source="Formula: IF [耐用年限單位是否為年份] THEN [耐用年限(折舊率)] ELSE ToNumber([耐用年限(折舊率)])/12 ENDIF" type="V_WString" />
+                <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                <Field name="是否為資料列" type="Bool" />
+                <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊狀態" size="1073741823" source="Formula: IF (&#xA;[折舊起始年加上耐用年限] &lt;&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(折舊提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;[折舊起始年加上耐用年限] =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(本年提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;ToNumber([折舊起始年度]) =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;本期新增&quot;&#xA;&#xA;ELSE &quot;折舊中&quot;&#xA;ENDIF&#xA;" type="V_WString" />
+                <Field name="折舊月份" size="64" source="Formula: &quot;&quot;" type="String" />
+                <Field name="每月折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="差異數" source="Formula: 0" type="Int16" />
+                <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+                <Field name="折舊起始日(格式轉換後)" size="10" source="DateTime: To yyyy-MM-dd" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始年度" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始月份" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始日" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field name="折舊起始年加上耐用年限" source="Formula: ToNumber([折舊起始年度])+ToNumber([耐用年限(折舊率)])" type="Int16" />
+              </RecordInfo>
+            </MetaInfo>
+            <MetaInfo connection="False">
+              <RecordInfo>
+                <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="耐用年限(折舊率)" size="255" source="Formula: IF [耐用年限單位是否為年份] THEN [耐用年限(折舊率)] ELSE ToNumber([耐用年限(折舊率)])/12 ENDIF" type="V_WString" />
+                <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                <Field name="是否為資料列" type="Bool" />
+                <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊狀態" size="1073741823" source="Formula: IF (&#xA;[折舊起始年加上耐用年限] &lt;&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(折舊提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;[折舊起始年加上耐用年限] =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(本年提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;ToNumber([折舊起始年度]) =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;本期新增&quot;&#xA;&#xA;ELSE &quot;折舊中&quot;&#xA;ENDIF&#xA;" type="V_WString" />
+                <Field name="折舊月份" size="64" source="Formula: &quot;&quot;" type="String" />
+                <Field name="每月折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="差異數" source="Formula: 0" type="Int16" />
+                <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+                <Field name="折舊起始日(格式轉換後)" size="10" source="DateTime: To yyyy-MM-dd" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始年度" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始月份" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始日" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field name="折舊起始年加上耐用年限" source="Formula: ToNumber([折舊起始年度])+ToNumber([耐用年限(折舊率)])" type="Int16" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+        </Node>
+        <Node ToolID="70">
+          <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+            <Position x="2982" y="656" width="135" height="149" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <Caption>折舊中</Caption>
+              <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+              <Disabled value="False" />
+              <Folded value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+          <ChildNodes>
+            <Node ToolID="71">
+              <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+                <Position x="3007" y="705" />
+              </GuiSettings>
+              <Properties>
+                <Configuration>
+                  <FormulaFields>
+                    <FormulaField expression="12" field="折舊月份" size="64" type="String" />
+                  </FormulaFields>
+                </Configuration>
+                <Annotation DisplayMode="0">
+                  <Name />
+                  <DefaultAnnotationText><![CDATA[折舊月份 = 12
+]]></DefaultAnnotationText>
+                  <Left value="False" />
+                </Annotation>
+                <MetaInfo connection="Output">
+                  <RecordInfo>
+                    <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                    <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                    <Field name="耐用年限(折舊率)" size="255" source="Formula: IF [耐用年限單位是否為年份] THEN [耐用年限(折舊率)] ELSE ToNumber([耐用年限(折舊率)])/12 ENDIF" type="V_WString" />
+                    <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                    <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                    <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                    <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                    <Field name="是否為資料列" type="Bool" />
+                    <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                    <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                    <Field name="折舊狀態" size="1073741823" source="Formula: IF (&#xA;[折舊起始年加上耐用年限] &lt;&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(折舊提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;[折舊起始年加上耐用年限] =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(本年提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;ToNumber([折舊起始年度]) =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;本期新增&quot;&#xA;&#xA;ELSE &quot;折舊中&quot;&#xA;ENDIF&#xA;" type="V_WString" />
+                    <Field name="折舊月份" size="64" source="Formula: 12" type="String" />
+                    <Field name="每月折舊費用" source="Formula: 0" type="Int16" />
+                    <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                    <Field name="差異數" source="Formula: 0" type="Int16" />
+                    <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                    <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                    <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+                    <Field name="折舊起始日(格式轉換後)" size="10" source="DateTime: To yyyy-MM-dd" type="String" />
+                    <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始年度" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                    <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始月份" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                    <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始日" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                    <Field name="折舊起始年加上耐用年限" source="Formula: ToNumber([折舊起始年度])+ToNumber([耐用年限(折舊率)])" type="Int16" />
+                  </RecordInfo>
+                </MetaInfo>
+              </Properties>
+              <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+            </Node>
+          </ChildNodes>
+        </Node>
+        <Node ToolID="61">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.Union.Union">
+            <Position x="3283" y="153" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <ByName_ErrorMode>Warning</ByName_ErrorMode>
+              <ByName_OutputMode>All</ByName_OutputMode>
+              <Mode>ByName</Mode>
+              <SetOutputOrder value="False" />
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="資產分類(編號)" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="固定資產成本" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="耐用年限(折舊率)" size="255" source="Formula: IF [耐用年限單位是否為年份] THEN [耐用年限(折舊率)] ELSE ToNumber([耐用年限(折舊率)])/12 ENDIF" type="V_WString" />
+                <Field name="預留殘值" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="折舊起始日期" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="V_WString" />
+                <Field name="本期提列數" source="File: C:\Users\JYKL\Desktop\Alteryx\Altreyx_AIT_Components\altreyx_plugin_ord_dep\財務目錄.xlsx|||`Sheet1$`" type="Double" />
+                <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+                <Field name="是否為資料列" type="Bool" />
+                <Field name="是否處理成功" source="Formula: 1" type="Bool" />
+                <Field name="問題說明" size="1073741823" source="Formula: &quot;&quot;" type="V_WString" />
+                <Field name="折舊狀態" size="1073741823" source="Formula: IF (&#xA;[折舊起始年加上耐用年限] &lt;&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(折舊提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;[折舊起始年加上耐用年限] =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;已提畢(本年提畢)&quot; &#xA;&#xA;ELSEIF (&#xA;ToNumber([折舊起始年度]) =&#xA;ToNumber(DateTimeYear(DateTimeNow())))&#xA;THEN &quot;本期新增&quot;&#xA;&#xA;ELSE &quot;折舊中&quot;&#xA;ENDIF&#xA;" type="V_WString" />
+                <Field name="折舊月份" size="64" source="Formula: (Multiple Sources)" type="String" />
+                <Field name="每月折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="本期折舊費用" source="Formula: 0" type="Int16" />
+                <Field name="差異數" source="Formula: 0" type="Int16" />
+                <Field name="折舊起算方式是否為下個月計算" source="TextInput:" type="Bool" />
+                <Field name="耐用年限單位是否為年份" source="TextInput:" type="Bool" />
+                <Field name="會計科目" size="11" source="TextInput:" type="V_WString" />
+                <Field name="折舊起始日(格式轉換後)" size="10" source="DateTime: To yyyy-MM-dd" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始年度" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始月份" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field description="TextToColumns: Parsed from 折舊起始日(格式轉換後)" name="折舊起始日" size="10" source="TextToColumns: Parsed from 折舊起始日(格式轉換後)" type="String" />
+                <Field name="折舊起始年加上耐用年限" source="Formula: ToNumber([折舊起始年度])+ToNumber([耐用年限(折舊率)])" type="Int16" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxUnion" />
+        </Node>
+      </ChildNodes>
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="17" Connection="Output" />
+      <Destination ToolID="16" Connection="Source" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="33" Connection="Output" />
+      <Destination ToolID="16" Connection="Targets" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="75" Connection="Output" />
+      <Destination ToolID="76" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="76" Connection="Output" />
+      <Destination ToolID="78" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="78" Connection="Output" />
+      <Destination ToolID="83" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="83" Connection="Output" />
+      <Destination ToolID="84" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="43" Connection="True" />
+      <Destination ToolID="45" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="40" Connection="True" />
+      <Destination ToolID="44" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="54" Connection="True" />
+      <Destination ToolID="43" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="54" Connection="True" />
+      <Destination ToolID="40" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="54" Connection="False" />
+      <Destination ToolID="55" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="54" Connection="False" />
+      <Destination ToolID="57" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="55" Connection="True" />
+      <Destination ToolID="56" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="57" Connection="True" />
+      <Destination ToolID="58" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="37" Connection="True" />
+      <Destination ToolID="62" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="37" Connection="True" />
+      <Destination ToolID="67" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="37" Connection="True" />
+      <Destination ToolID="69" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="35" Connection="Output" />
+      <Destination ToolID="18" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="21" Connection="Output" />
+      <Destination ToolID="32" Connection="Targets" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="30" Connection="Output" />
+      <Destination ToolID="32" Connection="Source" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="32" Connection="Output" />
+      <Destination ToolID="33" Connection="Targets" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="31" Connection="Output" />
+      <Destination ToolID="33" Connection="Source" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="18" Connection="Output" />
+      <Destination ToolID="28" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="22" Connection="False" />
+      <Destination ToolID="24" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="22" Connection="True" />
+      <Destination ToolID="27" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="27" Connection="Output" />
+      <Destination ToolID="29" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="28" Connection="Output" />
+      <Destination ToolID="22" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="29" Connection="Output" />
+      <Destination ToolID="38" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="1" Connection="Output" />
+      <Destination ToolID="6" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="11" Connection="Output" />
+      <Destination ToolID="17" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="13" Connection="True" />
+      <Destination ToolID="35" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="16" Connection="Output" />
+      <Destination ToolID="13" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="38" Connection="Output" />
+      <Destination ToolID="26" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="26" Connection="Output" />
+      <Destination ToolID="37" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="6" Connection="Output" />
+      <Destination ToolID="7" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="7" Connection="True" />
+      <Destination ToolID="21" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="62" Connection="True" />
+      <Destination ToolID="65" Connection="Input" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="65" Connection="Output" />
+      <Destination ToolID="61" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="68" Connection="Output" />
+      <Destination ToolID="61" Connection="Input" />
+    </Connection>
+    <Connection name="#3">
+      <Origin ToolID="71" Connection="Output" />
+      <Destination ToolID="61" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="67" Connection="True" />
+      <Destination ToolID="68" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="69" Connection="True" />
+      <Destination ToolID="71" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="61" Connection="Output" />
+      <Destination ToolID="75" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>折舊費用計算</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+    <RuntimeProperties>
+      <Actions />
+      <Questions>
+        <Question>
+          <Type>Tab</Type>
+          <Description>Questions</Description>
+          <Name>Tab (86)</Name>
+          <ToolId value="86" />
+          <Questions />
+        </Question>
+      </Questions>
+      <ModuleType>Macro</ModuleType>
+      <MacroCustomHelp value="False" />
+      <MacroDynamicOutputFields value="False" />
+      <MacroImageStd value="0" />
+      <MacroInputs />
+      <MacroOutputs />
+      <Wiz_CustomHelp value="False" />
+      <Wiz_CustomGraphic value="False" />
+      <Wiz_ShowOutput value="True" />
+      <Wiz_OpenOutputTools>
+        <Tool ToolId="84" Selected="False" />
+      </Wiz_OpenOutputTools>
+      <Wiz_OutputMessage />
+      <Wiz_NoOutputFilesMessage />
+      <Wiz_ChainRunWizard />
+    </RuntimeProperties>
+  </Properties>
+</AlteryxDocument>

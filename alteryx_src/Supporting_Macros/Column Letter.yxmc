@@ -1,0 +1,671 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2020.4">
+  <Nodes>
+    <Node ToolID="2">
+      <GuiSettings>
+        <Position x="150" y="246" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Value name="Ranges">1-3</Value>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="F1" source="TextInput:" type="Byte" />
+            <Field name="F2" source="TextInput:" type="Byte" />
+            <Field name="F3" source="TextInput:" type="Int16" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings Macro="SelectRecords.yxmc" />
+    </Node>
+    <Node ToolID="3">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Transpose.Transpose">
+        <Position x="294" y="342" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <ErrorWarn>Warn</ErrorWarn>
+          <KeyFields />
+          <DataFields>
+            <Field field="F1" selected="True" />
+            <Field field="F2" selected="True" />
+            <Field field="F3" selected="True" />
+            <Field field="*Unknown" selected="True" />
+          </DataFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Data: All fields</AnnotationText>
+          <DefaultAnnotationText>Data: All fields</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Name" size="2" source="Transpose:" type="String" />
+            <Field name="Value" source="TextInput:" type="Int16" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTranspose" />
+    </Node>
+    <Node ToolID="4">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.FieldInfo.FieldInfo">
+        <Position x="294" y="246" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Name" size="2" source="FieldInfo" type="V_String" />
+            <Field name="Type" size="5" source="FieldInfo" type="String" />
+            <Field name="Size" source="FieldInfo" type="Int32" />
+            <Field name="Scale" source="FieldInfo" type="Int32" />
+            <Field name="Source" size="10" source="FieldInfo" type="V_WString" />
+            <Field name="Description" size="1" source="FieldInfo" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFieldInfo" />
+    </Node>
+    <Node ToolID="5">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MultiRowFormula.MultiRowFormula">
+        <Position x="390" y="246" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UpdateField value="False" />
+          <UpdateField_Name />
+          <CreateField_Name>NewField</CreateField_Name>
+          <CreateField_Type>Int32</CreateField_Type>
+          <CreateField_Size>254</CreateField_Size>
+          <OtherRows>Empty</OtherRows>
+          <NumRows value="1" />
+          <Expression>IF [Row-1:NewField]=0 THEN 1
+ELSEIF Mod([Row-1:NewField],100) =26 THEN 
+IF Mod([Row-1:NewField],10000) =2626 THEN [Row-1:NewField]+7475
+ELSE [Row-1:NewField]+75 ENDIF
+ELSE [Row-1:NewField]+1 ENDIF</Expression>
+          <GroupByFields />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>New Field</AnnotationText>
+          <DefaultAnnotationText>IF [Row-1:NewField]=0 THEN 1
+ELSEIF Mod([Row-1:NewField],100)...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Name" size="2" source="FieldInfo" type="V_String" />
+            <Field name="Type" size="5" source="FieldInfo" type="String" />
+            <Field name="Size" source="FieldInfo" type="Int32" />
+            <Field name="Scale" source="FieldInfo" type="Int32" />
+            <Field name="Source" size="10" source="FieldInfo" type="V_WString" />
+            <Field name="Description" size="1" source="FieldInfo" type="V_WString" />
+            <Field description="Formula: IF [Row-1:NewField]=0 THEN 1&#xA;ELSEIF Mod([Row-1:NewField],100) =26 THEN &#xA;IF Mod([Row-1:NewField],10000) =2626 THEN [Row-1:NewField]+7475&#xA;ELSE [Row-1:NewField]+75 ENDIF&#xA;ELSE [Row-1:NewField]+1 ENDIF" name="NewField" source="Formula: IF [Row-1:NewField]=0 THEN 1&#xA;ELSEIF Mod([Row-1:NewField],100) =26 THEN &#xA;IF Mod([Row-1:NewField],10000) =2626 THEN [Row-1:NewField]+7475&#xA;ELSE [Row-1:NewField]+75 ENDIF&#xA;ELSE [Row-1:NewField]+1 ENDIF" type="Int32" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMultiRowFormula" />
+    </Node>
+    <Node ToolID="6">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="486" y="246" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField field="Column Letter" type="String" size="3" expression="IF [NewField]/10000 &gt; 1 THEN CharFromInt(64+Floor([NewField]/10000))&#xA;ELSE '' ENDIF&#xA;+&#xA;IF Mod([NewField],10000)/100 &gt; 1 THEN CharFromInt(64+Floor(Mod([NewField],10000)/100))&#xA;ELSE '' ENDIF&#xA;+&#xA;CharFromInt(64+Mod([NewField],100))" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Column Letter</AnnotationText>
+          <DefaultAnnotationText>Column Letter=IF [NewField]/10000 &gt; 1 THEN CharFromInt(64+Flo...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Name" size="2" source="FieldInfo" type="V_String" />
+            <Field name="Type" size="5" source="FieldInfo" type="String" />
+            <Field name="Size" source="FieldInfo" type="Int32" />
+            <Field name="Scale" source="FieldInfo" type="Int32" />
+            <Field name="Source" size="10" source="FieldInfo" type="V_WString" />
+            <Field name="Description" size="1" source="FieldInfo" type="V_WString" />
+            <Field description="Formula: IF [Row-1:NewField]=0 THEN 1&#xA;ELSEIF Mod([Row-1:NewField],100) =26 THEN &#xA;IF Mod([Row-1:NewField],10000) =2626 THEN [Row-1:NewField]+7475&#xA;ELSE [Row-1:NewField]+75 ENDIF&#xA;ELSE [Row-1:NewField]+1 ENDIF" name="NewField" source="Formula: IF [Row-1:NewField]=0 THEN 1&#xA;ELSEIF Mod([Row-1:NewField],100) =26 THEN &#xA;IF Mod([Row-1:NewField],10000) =2626 THEN [Row-1:NewField]+7475&#xA;ELSE [Row-1:NewField]+75 ENDIF&#xA;ELSE [Row-1:NewField]+1 ENDIF" type="Int32" />
+            <Field name="Column Letter" size="3" source="Formula: IF [NewField]/10000 &gt; 1 THEN CharFromInt(64+Floor([NewField]/10000))&#xA;ELSE '' ENDIF&#xA;+&#xA;IF Mod([NewField],10000)/100 &gt; 1 THEN CharFromInt(64+Floor(Mod([NewField],10000)/100))&#xA;ELSE '' ENDIF&#xA;+&#xA;CharFromInt(64+Mod([NewField],100))" type="String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="8">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.RecordID.RecordID">
+        <Position x="582" y="246" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <StartValue>1</StartValue>
+          <FieldName>FieldID</FieldName>
+          <FieldType>Int32</FieldType>
+          <Position>0</Position>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>FieldID</AnnotationText>
+          <DefaultAnnotationText>FieldID</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="FieldID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="Name" size="2" source="FieldInfo" type="V_String" />
+            <Field name="Type" size="5" source="FieldInfo" type="String" />
+            <Field name="Size" source="FieldInfo" type="Int32" />
+            <Field name="Scale" source="FieldInfo" type="Int32" />
+            <Field name="Source" size="10" source="FieldInfo" type="V_WString" />
+            <Field name="Description" size="1" source="FieldInfo" type="V_WString" />
+            <Field description="Formula: IF [Row-1:NewField]=0 THEN 1&#xA;ELSEIF Mod([Row-1:NewField],100) =26 THEN &#xA;IF Mod([Row-1:NewField],10000) =2626 THEN [Row-1:NewField]+7475&#xA;ELSE [Row-1:NewField]+75 ENDIF&#xA;ELSE [Row-1:NewField]+1 ENDIF" name="NewField" source="Formula: IF [Row-1:NewField]=0 THEN 1&#xA;ELSEIF Mod([Row-1:NewField],100) =26 THEN &#xA;IF Mod([Row-1:NewField],10000) =2626 THEN [Row-1:NewField]+7475&#xA;ELSE [Row-1:NewField]+75 ENDIF&#xA;ELSE [Row-1:NewField]+1 ENDIF" type="Int32" />
+            <Field name="Column Letter" size="3" source="Formula: IF [NewField]/10000 &gt; 1 THEN CharFromInt(64+Floor([NewField]/10000))&#xA;ELSE '' ENDIF&#xA;+&#xA;IF Mod([NewField],10000)/100 &gt; 1 THEN CharFromInt(64+Floor(Mod([NewField],10000)/100))&#xA;ELSE '' ENDIF&#xA;+&#xA;CharFromInt(64+Mod([NewField],100))" type="String" />
+          </RecordInfo>
+          <SortInfo>
+            <Field field="FieldID" order="Asc" />
+          </SortInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxRecordID" />
+    </Node>
+    <Node ToolID="9">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="486" y="342" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="Name" action="GroupBy" rename="Name" />
+            <SummarizeField field="Value" action="Concat" rename="Sample Value">
+              <Concat_Start />
+              <Separator>|</Separator>
+              <Concat_End />
+            </SummarizeField>
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Group by: Name
+Concat: Value</AnnotationText>
+          <DefaultAnnotationText>Group by: Name
+Concat: Value</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Name" size="2" source="Summarize: GroupBy - Name" type="String" />
+            <Field name="Sample Value" size="1073741823" source="Summarize: Concat - Value" type="V_WString" />
+          </RecordInfo>
+          <SortInfo>
+            <Field field="Name" order="Asc" />
+          </SortInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+    <Node ToolID="10">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="390" y="342" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <SelectFields>
+            <SelectField field="Value" selected="True" type="V_WString" size="25000" />
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Select Value as String</AnnotationText>
+          <DefaultAnnotationText>Select Value as String</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Name" size="2" source="Transpose:" type="String" />
+            <Field name="Value" size="25000" source="TextInput:" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="12">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="13">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroInput.MacroInput">
+        <Position x="54" y="246" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UseFileInput value="False" />
+          <Name>Input13</Name>
+          <Abbrev />
+          <ShowFieldMap value="False" />
+          <Optional value="False" />
+          <TextInput>
+            <Configuration>
+              <NumRows value="3" />
+              <Fields>
+                <Field name="F1" />
+                <Field name="F2" />
+                <Field name="F3" />
+              </Fields>
+              <Data>
+                <r>
+                  <c>1</c>
+                  <c>2</c>
+                  <c>3</c>
+                </r>
+                <r>
+                  <c>11</c>
+                  <c>22</c>
+                  <c>33</c>
+                </r>
+                <r>
+                  <c>111</c>
+                  <c>222</c>
+                  <c>333</c>
+                </r>
+              </Data>
+            </Configuration>
+          </TextInput>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name>Text Input (1)</Name>
+          <DefaultAnnotationText>Input</DefaultAnnotationText>
+          <Left value="True" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="F1" source="TextInput:" type="Byte" />
+            <Field name="F2" source="TextInput:" type="Byte" />
+            <Field name="F3" source="TextInput:" type="Int16" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroInput" />
+    </Node>
+    <Node ToolID="14">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
+        <Position x="138" y="54" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Sample Record Range (enter 0 for none)</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="15">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+        <Position x="150" y="150" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="16">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
+        <Position x="1002" y="246" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Name>Output16</Name>
+          <Abbrev />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Output</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+    </Node>
+    <Node ToolID="17">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Sort.Sort">
+        <Position x="906" y="246" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SortInfo locale="0">
+            <Field field="FieldID" order="Ascending" />
+          </SortInfo>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>FieldID - Ascending</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="FieldID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="Name" size="2" source="FieldInfo" type="V_String" />
+            <Field name="Type" size="5" source="FieldInfo" type="String" />
+            <Field name="Column Letter" size="3" source="Formula: IF [NewField]/10000 &gt; 1 THEN CharFromInt(64+Floor([NewField]/10000))&#xA;ELSE '' ENDIF&#xA;+&#xA;IF Mod([NewField],10000)/100 &gt; 1 THEN CharFromInt(64+Floor(Mod([NewField],10000)/100))&#xA;ELSE '' ENDIF&#xA;+&#xA;CharFromInt(64+Mod([NewField],100))" type="String" />
+            <Field name="Sample Value" size="1073741823" source="Summarize: Concat - Value" type="V_WString" />
+          </RecordInfo>
+          <SortInfo locale="0">
+            <Field field="FieldID" order="Ascending" />
+          </SortInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSort" />
+    </Node>
+    <Node ToolID="18">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Message.Message">
+        <Position x="666" y="246" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <When>Filter</When>
+          <Filter>[FieldID]&gt;16384</Filter>
+          <Type>ErrorStop</Type>
+          <Priority>High</Priority>
+          <Transient>False</Transient>
+          <MessageExpression>"More Feilds than Excel (16384|XFD)"</MessageExpression>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Error: More fields than Excel</AnnotationText>
+          <DefaultAnnotationText>Error: More fields than Excel</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="FieldID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="Name" size="2" source="FieldInfo" type="V_String" />
+            <Field name="Type" size="5" source="FieldInfo" type="String" />
+            <Field name="Size" source="FieldInfo" type="Int32" />
+            <Field name="Scale" source="FieldInfo" type="Int32" />
+            <Field name="Source" size="10" source="FieldInfo" type="V_WString" />
+            <Field name="Description" size="1" source="FieldInfo" type="V_WString" />
+            <Field description="Formula: IF [Row-1:NewField]=0 THEN 1&#xA;ELSEIF Mod([Row-1:NewField],100) =26 THEN &#xA;IF Mod([Row-1:NewField],10000) =2626 THEN [Row-1:NewField]+7475&#xA;ELSE [Row-1:NewField]+75 ENDIF&#xA;ELSE [Row-1:NewField]+1 ENDIF" name="NewField" source="Formula: IF [Row-1:NewField]=0 THEN 1&#xA;ELSEIF Mod([Row-1:NewField],100) =26 THEN &#xA;IF Mod([Row-1:NewField],10000) =2626 THEN [Row-1:NewField]+7475&#xA;ELSE [Row-1:NewField]+75 ENDIF&#xA;ELSE [Row-1:NewField]+1 ENDIF" type="Int32" />
+            <Field name="Column Letter" size="3" source="Formula: IF [NewField]/10000 &gt; 1 THEN CharFromInt(64+Floor([NewField]/10000))&#xA;ELSE '' ENDIF&#xA;+&#xA;IF Mod([NewField],10000)/100 &gt; 1 THEN CharFromInt(64+Floor(Mod([NewField],10000)/100))&#xA;ELSE '' ENDIF&#xA;+&#xA;CharFromInt(64+Mod([NewField],100))" type="String" />
+          </RecordInfo>
+          <SortInfo>
+            <Field field="FieldID" order="Asc" />
+          </SortInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMessage" />
+    </Node>
+    <Node ToolID="19">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.JoinMultiple.JoinMultiple">
+        <Position x="810" y="246" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <JoinByRecPos value="False" />
+          <JoinFields>
+            <JoinInfo connection="#1">
+              <Field field="Name" />
+            </JoinInfo>
+            <JoinInfo connection="#2">
+              <Field field="Name" />
+            </JoinInfo>
+          </JoinFields>
+          <CartesianMode>Error</CartesianMode>
+          <OutputJoinOnly value="False" />
+          <SelectConfiguration>
+            <Configuration outputConnection="Output">
+              <OrderChanged value="False" />
+              <SelectFields>
+                <SelectField field="Input_#1_FieldID" selected="True" />
+                <SelectField field="Input_#1_Name" selected="True" />
+                <SelectField field="Input_#1_Type" selected="True" />
+                <SelectField field="Input_#1_Column Letter" selected="True" />
+                <SelectField field="Input_#2_Name" selected="False" rename="Input_#2_Name" />
+                <SelectField field="Input_#2_Sample Value" selected="True" />
+                <SelectField field="*Unknown" selected="False" />
+              </SelectFields>
+            </Configuration>
+          </SelectConfiguration>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Join by: Name</AnnotationText>
+          <DefaultAnnotationText>Join by: Name</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="FieldID" source="RecordID: Starting Value=1" type="Int32" />
+            <Field name="Name" size="2" source="FieldInfo" type="V_String" />
+            <Field name="Type" size="5" source="FieldInfo" type="String" />
+            <Field name="Column Letter" size="3" source="Formula: IF [NewField]/10000 &gt; 1 THEN CharFromInt(64+Floor([NewField]/10000))&#xA;ELSE '' ENDIF&#xA;+&#xA;IF Mod([NewField],10000)/100 &gt; 1 THEN CharFromInt(64+Floor(Mod([NewField],10000)/100))&#xA;ELSE '' ENDIF&#xA;+&#xA;CharFromInt(64+Mod([NewField],100))" type="String" />
+            <Field name="Sample Value" size="1073741823" source="Summarize: Concat - Value" type="V_WString" />
+          </RecordInfo>
+          <SortInfo>
+            <Field field="Name" order="" />
+          </SortInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxJoinMultiple" />
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="2" Connection="Output" />
+      <Destination ToolID="3" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="2" Connection="Output" />
+      <Destination ToolID="4" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="3" Connection="Output" />
+      <Destination ToolID="10" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="4" Connection="Output" />
+      <Destination ToolID="5" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="5" Connection="Output" />
+      <Destination ToolID="6" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="6" Connection="Output" />
+      <Destination ToolID="8" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="8" Connection="Output" />
+      <Destination ToolID="18" Connection="Input" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="9" Connection="Output" />
+      <Destination ToolID="19" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="18" Connection="Output" />
+      <Destination ToolID="19" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="10" Connection="Output" />
+      <Destination ToolID="9" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="13" Connection="Output" />
+      <Destination ToolID="2" Connection="Input" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="15" Connection="Action" />
+      <Destination ToolID="2" Connection="Action" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="14" Connection="Question" />
+      <Destination ToolID="15" Connection="Question" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="17" Connection="Output" />
+      <Destination ToolID="16" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="19" Connection="Output" />
+      <Destination ToolID="17" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <Constants>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Macro Input (13)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Text Box (14)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Macro Output (16)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+    </Constants>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>Column Letter</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+    <RuntimeProperties>
+      <Actions>
+        <NoCondition>
+          <Type>NoCondition</Type>
+          <Description>(Always Run)</Description>
+          <True>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description />
+              <ToolId value="15" />
+              <Mode>Simple</Mode>
+              <Variable />
+              <Replace value="False" />
+              <Destination>2/Value</Destination>
+            </Action>
+          </True>
+        </NoCondition>
+      </Actions>
+      <Questions>
+        <Question>
+          <Type>Tab</Type>
+          <Description>Questions</Description>
+          <Name>Tab (12)</Name>
+          <ToolId value="12" />
+          <Questions>
+            <Question>
+              <Type>MacroInput</Type>
+              <Description>Macro Input (13)</Description>
+              <Name>Macro Input (13)</Name>
+              <ToolId value="13" />
+            </Question>
+            <Question>
+              <Type>TextBox</Type>
+              <Description>Sample Record Range (enter 0 for none)</Description>
+              <Name>Text Box (14)</Name>
+              <ToolId value="14" />
+              <Default>1</Default>
+              <Password value="False" />
+              <Multiline value="False" />
+              <Hidden value="False" />
+            </Question>
+            <Question>
+              <Type>MacroOutput</Type>
+              <Description>Macro Output (16)</Description>
+              <Name>Macro Output (16)</Name>
+              <ToolId value="16" />
+            </Question>
+          </Questions>
+        </Question>
+      </Questions>
+      <ModuleType>Macro</ModuleType>
+      <MacroCustomHelp value="False" />
+      <MacroDynamicOutputFields value="False" />
+      <MacroImageStd value="35" />
+      <MacroInputs />
+      <MacroOutputs />
+      <Wiz_CustomHelp value="False" />
+      <Wiz_CustomGraphic value="False" />
+      <Wiz_ShowOutput value="True" />
+      <Wiz_OpenOutputTools>
+        <Tool ToolId="2" Selected="True" />
+        <Tool ToolId="13" Selected="True" />
+        <Tool ToolId="16" Selected="True" />
+      </Wiz_OpenOutputTools>
+      <Wiz_OutputMessage />
+      <Wiz_NoOutputFilesMessage />
+      <Wiz_ChainRunWizard />
+    </RuntimeProperties>
+  </Properties>
+</AlteryxDocument>
