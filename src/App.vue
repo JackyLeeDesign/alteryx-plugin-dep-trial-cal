@@ -34,39 +34,39 @@
 
         <!-- 第二步 -->
         <div class="card" style="margin-top:10px;">
-          <div class="card-header d-flex justify-content-between align-items-center"><b>Step2：請輸入其對應欄位：</b>
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <b>Step2：請選擇試算結果存放資料夾路徑<br>(註:儲存檔名為 PwC_折舊費用試算_YYYY-MM-DD hh-mm-ss.xlsx)</b>
           </div>
           <div class="card-body" style="overflow-x:auto;">
-            <!-- 資產分類(編號) -->
             <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label"><b>
-                  <BIconColumns style="vertical-align:text-top;" class="icon" /> 資產分類(編號)
+                  <BIconFiles style="vertical-align:text-top;" class="icon" />請選擇資料夾：
                 </b></label>
-              <br>
-              <label for="exampleFormControlInput1" class="form-label">
-                請選擇對應欄：
-              </label>
-              <select class="form-control" v-model="assets_num_col">
-                <option disabled value="">選擇欄位</option>
-                <option v-for="item, index in columns" v-bind:key="index">{{ item }}</option>
-              </select>
+              <ayx data-ui-props='{type:"FileBrowse", widgetId:"save_dir", browseType:"Folder"}'></ayx>
             </div>
+          </div>
+        </div>
 
-            <!-- 資產分類(名稱) -->
-            <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label"><b>
-                  <BIconColumns style="vertical-align:text-top;" class="icon" /> 資產分類(名稱)
-                </b></label>
-              <br>
-              <label for="exampleFormControlInput1" class="form-label">
-                請選擇對應欄：
-              </label>
-              <select class="form-control" v-model="assets_name_col">
-                <option disabled value="">選擇欄位</option>
-                <option v-for="item, index in columns" v-bind:key="index">{{ item }}</option>
-              </select>
-            </div>
+        <!-- 第三步 -->
+        <div class="card" style="margin-top:10px;">
+          <div class="card-header d-flex justify-content-between align-items-center"><b>Step3：請選擇季度：</b></div>
+          <div class="card-body" style="overflow-x:auto;">
+            <label for="exampleFormControlInput1" class="form-label"><b>
+                <BIconColumns style="vertical-align:text-top;" class="icon" /> 季度
+              </b></label>
+            <select class="form-control" v-model="quarter_month">
+              <option disabled value="">季度選項</option>
+              <option v-for="item, index in quarter_month_list" v-bind:key="index" :value=item.value>{{ item.name }}
+              </option>
+            </select>
+          </div>
+        </div>
 
+        <!-- 第四步 -->
+        <div class="card" style="margin-top:10px;">
+          <div class="card-header d-flex justify-content-between align-items-center"><b>Step4：請輸入其對應欄位：</b>
+          </div>
+          <div class="card-body" style="overflow-x:auto;">
             <!-- 固定資產成本 -->
             <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label"><b>
@@ -80,6 +80,7 @@
                 <option v-for="item, index in columns" v-bind:key="index">{{ item }}</option>
               </select>
             </div>
+            <hr style="border:1px dashed" />
 
             <!-- 耐用年限(折舊率) -->
             <div class="mb-3">
@@ -89,29 +90,43 @@
               <label for="exampleFormControlInput1" class="form-label">
                 請選擇對應欄：
               </label>
-              <select class="form-control" v-model="durable_period_col">
-                <option disabled value="">選擇欄位</option>
-                <option v-for="item, index in columns" v-bind:key="index">{{ item }}</option>
-              </select><br>
-              <input type="checkbox" class="form-check-input" v-model="is_durable_period_year" /> 
-              <label for="exampleFormControlInput1" class="form-check-label"><b>
-                耐用年限單位是否為年份(若否則為月份)
-                </b></label>
-            </div>
-
-            <!-- 預留殘值 -->
-            <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label"><b>
-                  <BIconColumns style="vertical-align:text-top;" class="icon" /> 預留殘值
-                </b></label><br>
-              <label for="exampleFormControlInput1" class="form-label">
-                請選擇對應欄：
-              </label>
-              <select class="form-control" v-model="reserved_residual_values_col">
+              <select class="form-control mb-2" v-model="durable_period_col">
                 <option disabled value="">選擇欄位</option>
                 <option v-for="item, index in columns" v-bind:key="index">{{ item }}</option>
               </select>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" class="form-check-input" v-model="is_durable_period_year" />
+                <label for="exampleFormControlInput1" class="form-check-label"><b>
+                    耐用年限單位是否為年份(若否則為月份)
+                  </b></label>
+              </div>
             </div>
+
+            <hr style="border:1px dashed #000" />
+
+            <!-- 預留殘值 -->
+            <div class="mb-3">
+              <label for="exampleFormControlInput2" class="form-label"><b>
+                  <BIconColumns style="vertical-align:text-top;" class="icon" /> 預留殘值
+                </b></label><br>
+              <div class="form-check form-check-inline">
+                <input type="checkbox" class="form-check-input" v-model="is_res_val_empty" />
+                <label for="exampleFormControlInput2" class="form-check-label mb-2"><b>
+                    不適用 (勾選以試算所有資料)
+                  </b></label>
+              </div>
+              <div v-if="!is_res_val_empty">
+                <label for="exampleFormControlInput2" class="form-label">
+                  請選擇對應欄：
+                </label>
+                <select class="form-control" v-model="reserved_residual_values_col">
+                  <option disabled value="">選擇欄位</option>
+                  <option v-for="item, index in columns" v-bind:key="index">{{ item }}</option>
+                </select>
+              </div>
+            </div>
+
+            <hr style="border:1px dashed #000" />
 
             <!-- 折舊起始日期 -->
             <div class="mb-3">
@@ -130,16 +145,18 @@
                 請選擇折舊月份計算方式：
               </label>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="dep_trial_way1" value="1"
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="dep_trial_way1" :value=true
                   v-model="dep_trial_way">
                 <label class="form-check-label" for="inlineRadio1">下個月計算</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="dep_trial_way2" value="0"
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="dep_trial_way2" :value=false
                   v-model="dep_trial_way">
                 <label class="form-check-label" for="inlineRadio2">15 天為期</label>
               </div>
             </div>
+
+            <hr style="border:1px dashed #000" />
 
             <!-- 本期提列數 -->
             <div class="mb-3">
@@ -158,45 +175,69 @@
           </div>
         </div>
 
-        <!-- 第三步 -->
+        <!-- 第五步 -->
         <div class="card" style="margin-top:10px;">
           <div class="card-header d-flex justify-content-between align-items-center">
-            <b>Step3：請選擇欲排除之資產編號，系統將不進行試算</b>
+            <b>Step5：請選擇欲排除之資產編號，系統將不進行試算</b>
           </div>
           <div class="card-body" style="overflow-x:auto;">
-            <div class="mb-3">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineDepDetermineRadioOptions"
-                  id="dep_determine_way1" value="1" v-model="is_determine_num">
-                <label class="form-check-label" for="inlineRadio1">按資產編號進行排除</label>
+            <div class="form-check form-check-inline">
+              <input type="checkbox" class="form-check-input" v-model="is_no_need_asset_filter" />
+              <label for="exampleFormControlInput1" class="form-check-label mb-2"><b>
+                  不需排除資產分類
+                </b></label>
+            </div>
+            <div class="mb-3" v-if="is_no_need_asset_filter == '0'">
+              <div class="mb-2">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineDepDetermineRadioOptions"
+                    id="dep_determine_way1" :value=true v-model="is_determine_num">
+                  <label class="form-check-label" for="inlineRadio1">按資產編號進行排除</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineDepDetermineRadioOptions"
+                    id="dep_determine_way2" :value=false v-model="is_determine_num">
+                  <label class="form-check-label" for="inlineRadio2">按資產名稱進行排除</label>
+                </div>
               </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineDepDetermineRadioOptions"
-                  id="dep_determine_way2" value="0" v-model="is_determine_num">
-                <label class="form-check-label" for="inlineRadio2">按資產名稱進行排除</label>
-              </div>
-              <div class="form-check mb-3">
-                <label for="exampleFormControlInput1" class="form-check-label"><b>
-                    {{ is_determine_num == "1" ? "請輸入不計入折舊費用計算的資產編號抬頭代表號：" : "請輸入不計入折舊費用計算的資產名稱：" }}
+              <div v-if="is_determine_num">
+                <!-- 資產分類(編號) -->
+                <label for="exampleFormControlInput1" class="form-label"><b>
+                    <BIconColumns style="vertical-align:text-top;" class="icon" /> 資產分類(編號)
+                  </b></label>
+                <br>
+                <label for="exampleFormControlInput1" class="form-label">
+                  請選擇對應欄：
+                </label>
+                <select class="form-control mb-2" v-model="assets_num_col">
+                  <option disabled value="">選擇欄位</option>
+                  <option v-for="item, index in columns" v-bind:key="index">{{ item }}</option>
+                </select>
+                <label for="exampleFormControlInput1" class="form-check-label mb-2"><b>
+                    {{ is_determine_num ? "請輸入不計入折舊費用計算的資產編號抬頭代表號：" : "請輸入不計入折舊費用計算的資產名稱：" }}<br>( 若需排除多筆資料，可使用分號分隔 )
                   </b></label>
                 <input type="text" id="determine_num1" class="form-control"
-                  :placeholder="is_determine_num == 1 ? '請輸入資產編號' : '請輸入資產名稱'" v-model="no_cal_keyword">
+                  :placeholder="is_determine_num ? '請輸入資產編號' : '請輸入資產名稱'" v-model="no_cal_keyword">
               </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 第四步 -->
-        <div class="card" style="margin-top:10px;">
-          <div class="card-header d-flex justify-content-between align-items-center">
-            <b>Step4：請選擇試算結果存放資料夾路徑<br>(註:儲存檔名為 PwC_折舊費用試算_YYYY-MM-DD hh-mm-ss.xlsx)</b>
-          </div>
-          <div class="card-body" style="overflow-x:auto;">
-            <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label"><b>
-                <BIconFiles style="vertical-align:text-top;" class="icon" />請選擇資料夾：
-              </b></label>
-              <ayx data-ui-props='{type:"FileBrowse", widgetId:"save_dir", browseType:"Folder"}'></ayx>
+              <div class="mb-3" v-if="!is_determine_num">
+                <!-- 資產分類(名稱) -->
+                <label for="exampleFormControlInput1" class="form-label"><b>
+                    <BIconColumns style="vertical-align:text-top;" class="icon" /> 資產分類(名稱)
+                  </b></label>
+                <br>
+                <label for="exampleFormControlInput1" class="form-label">
+                  請選擇對應欄：
+                </label>
+                <select class="form-control mb-2" v-model="assets_name_col">
+                  <option disabled value="">選擇欄位</option>
+                  <option v-for="item, index in columns" v-bind:key="index">{{ item }}</option>
+                </select>
+                <label for="exampleFormControlInput1" class="form-check-label"><b>
+                    {{ is_determine_num ? "請輸入不計入折舊費用計算的資產編號抬頭代表號：" : "請輸入不計入折舊費用計算的資產名稱：" }}<br>( 若需排除多筆資料，可使用分號分隔 )
+                  </b></label>
+                <input type="text" id="determine_num1" class="form-control"
+                  :placeholder="is_determine_num ? '請輸入資產編號' : '請輸入資產名稱'" v-model="no_cal_keyword">
+              </div>
             </div>
           </div>
         </div>
@@ -205,7 +246,7 @@
   </div>
 
   <footer class="footer mt-auto">
-    <p class="text-muted" style="margin: 0px;text-align: center;">版本：0.2.0</p>
+    <p class="text-muted" style="margin: 0px;text-align: center;">版本：0.2.2</p>
   </footer>
 
 </template>
@@ -247,17 +288,22 @@ export default {
       assets_name_col: "", // 資產分類名稱
       asset_cost_col: "", // 固定資產成本
       durable_period_col: "", // 耐用年限
-      is_durable_period_year:true, //耐用年限是否為年份
+      is_durable_period_year: true, //耐用年限是否為年份
       reserved_residual_values_col: "", // 預留殘值
       dep_start_date_col: "", // 折舊起始日期
       amount_of_this_period_col: "", // 本期提列數
       no_cal_keyword: "", // 欲排除之會科關鍵字
-      dep_trial_way: "0", // 折舊起算方式, 0=>15天為期, 1=>下個月計算
+      dep_trial_way: false, // 折舊起算方式, 0=>15天為期, 1=>下個月計算
       input_isConnectFile: false,
-      is_determine_num: "1", // 是否依會科判斷
+      is_determine_num: true, // 是否依會科判斷
       save_dir: "", // 儲存路徑
+      is_no_need_asset_filter: false, // 不需排除會科
+      is_res_val_empty: false, // 無預留殘值
+      quarter_month: "", // 季度選項
+
 
       // 畫面控制相關參數
+      quarter_month_list: [{ name: "Q1", value: 3 }, { name: "Q2", value: 6 }, { name: "Q3", value: 9 }, { name: "Q4", value: 12 }],
       str_columns: [],
       val_columns: [],
       columns: []
@@ -370,6 +416,30 @@ export default {
         }
       },
       deep: true
+    },
+    is_no_need_asset_filter: {
+      handler(val) {
+        if (typeof window.Alteryx !== 'undefined') {
+          window.Alteryx.Gui.Manager.getDataItem("is_no_need_asset_filter").setValue(val)
+        }
+      },
+      deep: true
+    },
+    is_res_val_empty: {
+      handler(val) {
+        if (typeof window.Alteryx !== 'undefined') {
+          window.Alteryx.Gui.Manager.getDataItem("is_res_val_empty").setValue(val)
+        }
+      },
+      deep: true
+    },
+    quarter_month: {
+      handler(val) {
+        if (typeof window.Alteryx !== 'undefined') {
+          window.Alteryx.Gui.Manager.getDataItem("quarter_month").setValue(val)
+        }
+      },
+      deep: true
     }
   },
   mounted() {
@@ -385,7 +455,7 @@ export default {
         window.Alteryx.Gui.BeforeLoad = function (manager, AlteryxDataItems) {
           var assets_num_col = new AlteryxDataItems.SimpleString('assets_num_col')
           manager.addDataItem(assets_num_col)
-          var assets_name_col =new AlteryxDataItems.SimpleString('assets_name_col')
+          var assets_name_col = new AlteryxDataItems.SimpleString('assets_name_col')
           manager.addDataItem(assets_name_col)
           var asset_cost_col = new AlteryxDataItems.SimpleString('asset_cost_col')
           manager.addDataItem(asset_cost_col)
@@ -401,13 +471,19 @@ export default {
           manager.addDataItem(is_durable_period_year)
           var no_cal_keyword = new AlteryxDataItems.SimpleString('no_cal_keyword')
           manager.addDataItem(no_cal_keyword)
-          var is_determine_num = new AlteryxDataItems.SimpleString('is_determine_num')
+          var is_determine_num = new AlteryxDataItems.SimpleBool('is_determine_num')
           manager.addDataItem(is_determine_num)
-          var dep_trial_way = new AlteryxDataItems.SimpleString('dep_trial_way')
+          var dep_trial_way = new AlteryxDataItems.SimpleBool('dep_trial_way')
           manager.addDataItem(dep_trial_way)
           var save_dir = new AlteryxDataItems.SimpleString('save_dir')
           manager.addDataItem(save_dir)
           manager.bindDataItemToWidget(save_dir, 'save_dir')
+          var is_no_need_asset_filter = new AlteryxDataItems.SimpleBool('is_no_need_asset_filter')
+          manager.addDataItem(is_no_need_asset_filter)
+          var is_res_val_empty = new AlteryxDataItems.SimpleBool('is_res_val_empty')
+          manager.addDataItem(is_res_val_empty)
+          var quarter_month = new AlteryxDataItems.SimpleString('quarter_month')
+          manager.addDataItem(quarter_month)
         }
         //Load Settings
         window.Alteryx.Gui.AfterLoad = function (manager) {
@@ -424,17 +500,24 @@ export default {
           this.no_cal_keyword = manager.getDataItem("no_cal_keyword").getValue()
           this.is_determine_num = manager.getDataItem("is_determine_num").getValue()
           this.save_dir = manager.getDataItem("save_dir").getValue()
-
-          if(this.is_determine_num == ""){
-            this.is_determine_num = "1"
+          this.is_res_val_empty = manager.getDataItem("is_res_val_empty").getValue()
+          this.is_no_need_asset_filter = manager.getDataItem("is_no_need_asset_filter").getValue()
+          this.quarter_month = manager.getDataItem("quarter_month").getValue()
+          if (this.is_no_need_asset_filter == "") {
+            this.is_no_need_asset_filter = false
           }
-          if(this.is_durable_period_year == ""){
+          if (this.is_res_val_empty == "") {
+            this.is_res_val_empty = false
+          }
+          if (this.is_determine_num == "") {
+            this.is_determine_num = true
+          }
+          if (this.is_durable_period_year == "") {
             this.is_durable_period_year = true
           }
-          if(this.dep_trial_way == ""){
-            this.dep_trial_way = "0"
+          if (this.dep_trial_way == "") {
+            this.dep_trial_way = false
           }
-
           // Load Income Field
           let str_type = ["String", "WString", "V_String", "V_WString", "Date", "Time", "DateTime"]
           let val_type = ["Byte", "Int16", "Int32", "Int64", "FixedDecimal", "Float", "Double"]

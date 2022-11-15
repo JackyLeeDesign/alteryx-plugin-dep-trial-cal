@@ -1,6 +1,6 @@
 {
   "name": "alteryx_plugin_dep_trial_cal",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
