@@ -88,10 +88,10 @@
 
             <!-- 耐用年限(折舊率) -->
             <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label"><b>
+              <label for="exampleFormControlInput3" class="form-label"><b>
                   <BIconColumns style="vertical-align:text-top;" class="icon" /> 耐用年限(折舊率)
                 </b></label><br>
-              <label for="exampleFormControlInput1" class="form-label">
+              <label for="exampleFormControlInput3" class="form-label">
                 請選擇對應欄：
               </label>
               <select class="form-control mb-2" v-model="durable_period_col">
@@ -100,7 +100,7 @@
               </select>
               <div class="form-check form-check-inline">
                 <input type="checkbox" class="form-check-input" v-model="is_durable_period_year" />
-                <label for="exampleFormControlInput1" class="form-check-label"><b>
+                <label for="exampleFormControlInput3" class="form-check-label"><b>
                     耐用年限單位是否為年份(若否則為月份)
                   </b></label>
               </div>
@@ -149,12 +149,12 @@
                 請選擇折舊月份計算方式：
               </label>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="dep_trial_way1" :value=true
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="dep_trial_way1" value='1'
                   v-model="dep_trial_way">
                 <label class="form-check-label" for="inlineRadio1">下個月計算</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="dep_trial_way2" :value=false
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="dep_trial_way2" value='0'
                   v-model="dep_trial_way">
                 <label class="form-check-label" for="inlineRadio2">15 天為期</label>
               </div>
@@ -191,20 +191,20 @@
                   不需排除資產分類
                 </b></label>
             </div>
-            <div class="mb-3" v-if="is_no_need_asset_filter == '0'">
+            <div class="mb-3" v-if="!is_no_need_asset_filter">
               <div class="mb-2">
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" name="inlineDepDetermineRadioOptions"
-                    id="dep_determine_way1" :value=true v-model="is_determine_num">
+                    id="dep_determine_way1" value="1" v-model="is_determine_num">
                   <label class="form-check-label" for="inlineRadio1">按資產編號進行排除</label>
                 </div>
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" name="inlineDepDetermineRadioOptions"
-                    id="dep_determine_way2" :value=false v-model="is_determine_num">
+                    id="dep_determine_way2" value="0" v-model="is_determine_num">
                   <label class="form-check-label" for="inlineRadio2">按資產名稱進行排除</label>
                 </div>
               </div>
-              <div v-if="is_determine_num">
+              <div v-if="is_determine_num=='1'">
                 <!-- 資產分類(編號) -->
                 <label for="exampleFormControlInput1" class="form-label"><b>
                     <BIconColumns style="vertical-align:text-top;" class="icon" /> 資產分類(編號)
@@ -218,12 +218,12 @@
                   <option v-for="item, index in columns" v-bind:key="index">{{ item }}</option>
                 </select>
                 <label for="exampleFormControlInput1" class="form-check-label mb-2"><b>
-                    {{ is_determine_num ? "請輸入不計入折舊費用計算的資產編號抬頭代表號：" : "請輸入不計入折舊費用計算的資產名稱：" }}<br>( 若需排除多筆資料，可使用分號分隔 )
+                    {{ is_determine_num=='1' ? "請輸入不計入折舊費用計算的資產編號抬頭代表號：" : "請輸入不計入折舊費用計算的資產名稱：" }}<br>( 若需排除多筆資料，可使用分號分隔 )
                   </b></label>
                 <input type="text" id="determine_num1" class="form-control"
-                  :placeholder="is_determine_num ? '請輸入資產編號' : '請輸入資產名稱'" v-model="no_cal_keyword">
+                  :placeholder="is_determine_num=='1' ? '請輸入資產編號' : '請輸入資產名稱'" v-model="no_cal_keyword">
               </div>
-              <div class="mb-3" v-if="!is_determine_num">
+              <div class="mb-3" v-if="is_determine_num=='0'">
                 <!-- 資產分類(名稱) -->
                 <label for="exampleFormControlInput1" class="form-label"><b>
                     <BIconColumns style="vertical-align:text-top;" class="icon" /> 資產分類(名稱)
@@ -237,14 +237,18 @@
                   <option v-for="item, index in columns" v-bind:key="index">{{ item }}</option>
                 </select>
                 <label for="exampleFormControlInput1" class="form-check-label"><b>
-                    {{ is_determine_num ? "請輸入不計入折舊費用計算的資產編號抬頭代表號：" : "請輸入不計入折舊費用計算的資產名稱：" }}<br>( 若需排除多筆資料，可使用分號分隔 )
+                    {{ is_determine_num=='1' ? "請輸入不計入折舊費用計算的資產編號抬頭代表號：" : "請輸入不計入折舊費用計算的資產名稱：" }}<br>( 若需排除多筆資料，可使用分號分隔 )
                   </b></label>
                 <input type="text" id="determine_num1" class="form-control"
-                  :placeholder="is_determine_num ? '請輸入資產編號' : '請輸入資產名稱'" v-model="no_cal_keyword">
+                  :placeholder="is_determine_num=='1' ? '請輸入資產編號' : '請輸入資產名稱'" v-model="no_cal_keyword">
               </div>
             </div>
           </div>
         </div>
+
+        <!-- 測試用 -->
+        <input type="text" id="determine_num1" class="form-control"
+                  placeholder="測試日期" v-model="testDate">
       </div>
     </div>
   </div>
@@ -295,9 +299,9 @@ export default {
       dep_start_date_col: "", // 折舊起始日期
       amount_of_this_period_col: "", // 本期提列數
       no_cal_keyword: "", // 欲排除之會科關鍵字
-      dep_trial_way: false, // 折舊起算方式, 0=>15天為期, 1=>下個月計算
+      dep_trial_way: "0", // 折舊起算方式, 0=>15天為期, 1=>下個月計算
       input_isConnectFile: false,
-      is_determine_num: true, // 是否依會科判斷
+      is_determine_num: "1", // 是否依會科判斷
       save_dir: "", // 儲存路徑
       is_no_need_asset_filter: false, // 不需排除會科
       is_res_val_empty: false, // 無預留殘值
@@ -307,8 +311,11 @@ export default {
       quarter_month_list: [{ name: "Q1", value: 3 }, { name: "Q2", value: 6 }, { name: "Q3", value: 9 }, { name: "Q4", value: 12 }],
       str_columns: [],
       val_columns: [],
-      columns: []
+      columns: [],
       // help_1:false,
+
+      // 測試用
+      testDate:"",
     }
   },
   components: {
@@ -441,6 +448,14 @@ export default {
         }
       },
       deep: true
+    },
+    testDate:{
+      handler(val) {
+        if (typeof window.Alteryx !== 'undefined') {
+          window.Alteryx.Gui.Manager.getDataItem("testDate").setValue(val)
+        }
+      },
+      deep: true
     }
   },
   mounted() {
@@ -472,9 +487,9 @@ export default {
           manager.addDataItem(is_durable_period_year)
           var no_cal_keyword = new AlteryxDataItems.SimpleString('no_cal_keyword')
           manager.addDataItem(no_cal_keyword)
-          var is_determine_num = new AlteryxDataItems.SimpleBool('is_determine_num')
+          var is_determine_num = new AlteryxDataItems.SimpleString('is_determine_num')
           manager.addDataItem(is_determine_num)
-          var dep_trial_way = new AlteryxDataItems.SimpleBool('dep_trial_way')
+          var dep_trial_way = new AlteryxDataItems.SimpleString('dep_trial_way')
           manager.addDataItem(dep_trial_way)
           var save_dir = new AlteryxDataItems.SimpleString('save_dir')
           manager.addDataItem(save_dir)
@@ -485,6 +500,8 @@ export default {
           manager.addDataItem(is_res_val_empty)
           var quarter_month = new AlteryxDataItems.SimpleString('quarter_month')
           manager.addDataItem(quarter_month)
+          var testDate = new AlteryxDataItems.SimpleString('testDate')
+          manager.addDataItem(testDate)
         }
         //Load Settings
         window.Alteryx.Gui.AfterLoad = function (manager) {
@@ -504,6 +521,8 @@ export default {
           this.is_res_val_empty = manager.getDataItem("is_res_val_empty").getValue()
           this.is_no_need_asset_filter = manager.getDataItem("is_no_need_asset_filter").getValue()
           this.quarter_month = manager.getDataItem("quarter_month").getValue()
+          this.testDate = manager.getDataItem("testDate").getValue()
+          
           if (this.is_no_need_asset_filter == "") {
             this.is_no_need_asset_filter = false
           }
@@ -511,13 +530,13 @@ export default {
             this.is_res_val_empty = false
           }
           if (this.is_determine_num == "") {
-            this.is_determine_num = true
+            this.is_determine_num = "1"
           }
           if (this.is_durable_period_year == "") {
-            this.is_durable_period_year = true
+            this.is_durable_period_year = false
           }
           if (this.dep_trial_way == "") {
-            this.dep_trial_way = false
+            this.dep_trial_way = "0"
           }
           // Load Income Field
           let str_type = ["String", "WString", "V_String", "V_WString", "Date", "Time", "DateTime"]
