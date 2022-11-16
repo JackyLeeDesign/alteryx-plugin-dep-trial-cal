@@ -7,6 +7,10 @@
           <img src="./PwC.png" style="width: 100px;">
         </div>
       </div>
+      <!-- <div>
+        <button id="importSettingBtn" onclick="importSetting()">匯入設定檔</button>
+        <button id="exportSettingBtn" onclick="exportSetting()">匯出當前設定</button>
+      </div> -->
     </div>
 
     <!-- 主要內容 -->
@@ -277,8 +281,6 @@ if (!String.prototype.replaceAll) {
 String.prototype.clsPunc = function () {
   return this.replace(/[\p{P}\p{S}\p{Z}]/gu, '').toLowerCase()
 }
-
-
 export default {
   name: 'files',
   data() {
@@ -300,7 +302,6 @@ export default {
       is_no_need_asset_filter: false, // 不需排除會科
       is_res_val_empty: false, // 無預留殘值
       quarter_month: "", // 季度選項
-
 
       // 畫面控制相關參數
       quarter_month_list: [{ name: "Q1", value: 3 }, { name: "Q2", value: 6 }, { name: "Q3", value: 9 }, { name: "Q4", value: 12 }],
@@ -552,8 +553,86 @@ export default {
     },
   },
   methods: {
+    // importSetting: function () {
+
+    // },
+    // exportSetting: function () {
+    //   const service = new CSVGenerateService(data);
+    //   service.filename = 'whatever'
+    //   service.download();
+    // }
   }
 }
+
+// class CSVGenerateService {
+//   constructor(data) {
+//     this.data = data;
+//     this.header = this.getHeaderMap();
+//     this.body = this.getChangeKeys(data);
+//     this.csvString = this.convertToCSV(this.body);
+//     var currentDate = new Date().toDateString();
+//     this._filename = "Altreyx折舊費用公版設定檔_" + currentDate;
+//   }
+
+//   getChangeKeys(rows) {
+//     return rows.map(row => {
+//       for (const [key, value] of Object.entries(row)) {
+//         if (this.header[key] == null) {
+//           row[key] = value;
+//         } else {
+//           row[this.header[key]] = value;
+//           delete row[key];
+//         }
+//       }
+//       return row;
+//     });
+//   }
+
+//   getHeaderMap() {
+//     return {
+//       assets_num_col: "資產分類編號",
+//       assets_name_col: "資產分類名稱",
+//       asset_cost_col: "固定資產成本",
+//       durable_period_col: "耐用年限",
+//       is_durable_period_year: "耐用年限是否為年份",
+//       reserved_residual_values_col: "預留殘值",
+//       dep_start_date_col: "折舊起始日期",
+//       amount_of_this_period_col: "本期提列數",
+//       no_cal_keyword: "欲排除之會科關鍵字",
+//       dep_trial_way: "折舊起算方式",
+//       is_determine_num: "是否依會科判斷",
+//       save_dir: "儲存路徑",
+//       is_no_need_asset_filter: "不需排除會科",
+//       is_res_val_empty: "無預留殘值",
+//       quarter_month: "季度選項",
+//     };
+//   }
+
+//   convertToCSV(arr) {
+//     const array = [Object.keys(arr[0])].concat(arr);
+
+//     return array.map(obj => Object.values(obj).toString()).join("\n");
+//   }
+
+//   download() {
+//     const csvContent = "data:text/csv;charset=utf-8,\ufeff" + this.csvString;
+//     const encodedUri = encodeURI(csvContent);
+//     const link = document.createElement("a");
+//     link.setAttribute("href", encodedUri);
+//     link.setAttribute("download", `${this._filename}.csv`);
+
+//     document.body.appendChild(link);
+//     link.click();
+//   }
+
+//   get filename() {
+//     return this._filename;
+//   }
+
+//   set filename(name) {
+//     this._filename = name;
+//   }
+// }
 </script>
 
 <style>
