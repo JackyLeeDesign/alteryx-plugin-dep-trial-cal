@@ -25,6 +25,21 @@
             <label for="exampleFormControlInput1" class="form-label"><b>
                 <BIconFiles style="vertical-align:text-top;" class="icon" />本元件將依客戶所提供之財產目錄進行試算。
               </b></label>
+            <button type="button" class="btn" style="padding:0px;" v-on:click="help_1 = !help_1">
+              <span v-if="!help_1">
+                <BIconEyeFill style="vertical-align:text-top;" class="icon" /> 檢視教學
+              </span>
+              <span v-if="help_1">
+                <BIconEyeSlashFill style="vertical-align:text-top;" class="icon" /> 隱藏教學
+              </span>
+            </button>
+            <br>
+            <div v-if="help_1">
+              <div class="mb-3" style="display:grid;justify-content:space-around;">
+                <label class="form-label"><b>1.於折舊費用計算工具前連結一個 Input Data 元件，並設定 Input Data 相關資訊。</b></label>
+                <img src="./step_1_1.png" style="width: 100%;max-width:650px;">
+              </div>
+            </div>
             <div class="mb-3">
               <b v-if="legder_status === true" style="color:green;">
                 <BIconCheckLg style="vertical-align:text-top;" class="icon" /> 已連接完成
@@ -42,6 +57,21 @@
             <b>Step2：請選擇試算結果存放資料夾路徑<br>(註:儲存檔名為 PwC_折舊費用試算_YYYY-MM-DD hh-mm-ss.xlsx)</b>
           </div>
           <div class="card-body" style="overflow-x:auto;">
+            <button type="button" class="btn" style="padding:0px;" v-on:click="help_2 = !help_2">
+              <span v-if="!help_2">
+                <BIconEyeFill style="vertical-align:text-top;" class="icon" /> 檢視教學
+              </span>
+              <span v-if="help_2">
+                <BIconEyeSlashFill style="vertical-align:text-top;" class="icon" /> 隱藏教學
+              </span>
+            </button>
+            <br>
+            <div v-if="help_2">
+              <div class="mb-3" style="display:grid;justify-content:space-around;">
+                <label class="form-label"><b>選擇試算結果存放資料夾，儲存檔名系統會自動命名為 PwC_折舊費用試算_YYYY-MM-DD hh-mm-ss.xlsx</b></label>
+                <img src="./step_2_1.png" style="width: 100%;max-width:650px;">
+              </div>
+            </div>
             <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label"><b>
                   <BIconFiles style="vertical-align:text-top;" class="icon" />請選擇資料夾：
@@ -71,6 +101,22 @@
           <div class="card-header d-flex justify-content-between align-items-center"><b>Step4：請輸入其對應欄位：</b>
           </div>
           <div class="card-body" style="overflow-x:auto;">
+            <button type="button" class="btn" style="padding:0px;" v-on:click="help_4 = !help_4">
+              <span v-if="!help_4">
+                <BIconEyeFill style="vertical-align:text-top;" class="icon" /> 檢視教學
+              </span>
+              <span v-if="help_4">
+                <BIconEyeSlashFill style="vertical-align:text-top;" class="icon" /> 隱藏教學
+              </span>
+            </button>
+            <br>
+            <div v-if="help_4">
+              <div class="mb-3" style="display:grid;justify-content:space-around;">
+                <label class="form-label"><b>下拉選項來源皆為您所連結之 Excel 檔案欄位名稱，請選擇其對應欄位。<br>若固定資產是由其他欄位相加後的結果，那可於 Excel
+                    先自行建立相加後的欄位，再將整理後的檔案連結至該工具進行試算。</b></label>
+                <img src="./step_4_1.png" style="width: 100%;max-width:650px;">
+              </div>
+            </div>
             <!-- 固定資產成本 -->
             <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label"><b>
@@ -113,6 +159,21 @@
               <label for="exampleFormControlInput2" class="form-label"><b>
                   <BIconColumns style="vertical-align:text-top;" class="icon" /> 預留殘值
                 </b></label><br>
+              <button type="button" class="btn" style="padding:0px;" v-on:click="help_5 = !help_5">
+                <span v-if="!help_5">
+                  <BIconEyeFill style="vertical-align:text-top;" class="icon" /> 檢視教學
+                </span>
+                <span v-if="help_5">
+                  <BIconEyeSlashFill style="vertical-align:text-top;" class="icon" /> 隱藏教學
+                </span>
+              </button>
+              <br>
+              <div v-if="help_5">
+                <div class="mb-3" style="display:grid;justify-content:space-around;">
+                  <label class="form-label"><b>若無預留殘值，則勾選不適用即可。</b></label>
+                  <img src="./step_4_2.png" style="width: 100%;max-width:650px;">
+                </div>
+              </div>
               <div class="form-check form-check-inline">
                 <input type="checkbox" class="form-check-input" v-model="is_res_val_empty" />
                 <label for="exampleFormControlInput2" class="form-check-label mb-2"><b>
@@ -149,12 +210,12 @@
                 請選擇折舊月份計算方式：
               </label>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="dep_trial_way1" value='1'
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="dep_trial_way1" :value=true
                   v-model="dep_trial_way">
                 <label class="form-check-label" for="inlineRadio1">下個月計算</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="dep_trial_way2" value='0'
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="dep_trial_way2" :value=false
                   v-model="dep_trial_way">
                 <label class="form-check-label" for="inlineRadio2">15 天為期</label>
               </div>
@@ -178,13 +239,36 @@
             </div>
           </div>
         </div>
-
         <!-- 第五步 -->
         <div class="card" style="margin-top:10px;">
           <div class="card-header d-flex justify-content-between align-items-center">
             <b>Step5：請選擇欲排除之資產編號，系統將不進行試算</b>
           </div>
+
           <div class="card-body" style="overflow-x:auto;">
+            <button type="button" class="btn" style="padding:0px;" v-on:click="help_6 = !help_6">
+              <span v-if="!help_6">
+                <BIconEyeFill style="vertical-align:text-top;" class="icon" /> 檢視教學
+              </span>
+              <span v-if="help_6">
+                <BIconEyeSlashFill style="vertical-align:text-top;" class="icon" /> 隱藏教學
+              </span>
+            </button>
+            <br>
+            <div v-if="help_6">
+              <div class="mb-3" style="display:grid;justify-content:space-around;">
+                <label class="form-label"><b>依資產名稱或編號進行篩選，並選擇其對應欄位。</b></label>
+                <img src="./step_5_1.png" style="width: 100%;max-width:650px;">
+              </div>
+              <div class="mb-3" style="display:grid;justify-content:space-around;">
+                <label class="form-label"><b>設定篩選條件，條件若輸入 "1611;1616" 則表示 1611 和 1616 開頭的資產編號將不會進行折舊試算。</b></label>
+                <img src="./step_5_2.png" style="width: 100%;max-width:650px;">
+              </div>
+              <div class="mb-3" style="display:grid;justify-content:space-around;">
+                <label class="form-label"><b>若無需排除資產編號，選擇 "不需排除資產分類" 即可。</b></label>
+                <img src="./step_5_3.png" style="width: 100%;max-width:650px;">
+              </div>
+            </div>
             <div class="form-check form-check-inline">
               <input type="checkbox" class="form-check-input" v-model="is_no_need_asset_filter" />
               <label for="exampleFormControlInput1" class="form-check-label mb-2"><b>
@@ -195,16 +279,16 @@
               <div class="mb-2">
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" name="inlineDepDetermineRadioOptions"
-                    id="dep_determine_way1" value="1" v-model="is_determine_num">
+                    id="dep_determine_way1" :value=true v-model="is_determine_num">
                   <label class="form-check-label" for="inlineRadio1">按資產編號進行排除</label>
                 </div>
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" name="inlineDepDetermineRadioOptions"
-                    id="dep_determine_way2" value="0" v-model="is_determine_num">
+                    id="dep_determine_way2" :value=false v-model="is_determine_num">
                   <label class="form-check-label" for="inlineRadio2">按資產名稱進行排除</label>
                 </div>
               </div>
-              <div v-if="is_determine_num=='1'">
+              <div v-if="is_determine_num">
                 <!-- 資產分類(編號) -->
                 <label for="exampleFormControlInput1" class="form-label"><b>
                     <BIconColumns style="vertical-align:text-top;" class="icon" /> 資產分類(編號)
@@ -218,12 +302,12 @@
                   <option v-for="item, index in columns" v-bind:key="index">{{ item }}</option>
                 </select>
                 <label for="exampleFormControlInput1" class="form-check-label mb-2"><b>
-                    {{ is_determine_num=='1' ? "請輸入不計入折舊費用計算的資產編號抬頭代表號：" : "請輸入不計入折舊費用計算的資產名稱：" }}<br>( 若需排除多筆資料，可使用分號分隔 )
+                    {{ is_determine_num ? "請輸入不計入折舊費用計算的資產編號抬頭代表號：" : "請輸入不計入折舊費用計算的資產名稱：" }}<br>( 若需排除多筆資料，可使用分號分隔 )
                   </b></label>
                 <input type="text" id="determine_num1" class="form-control"
-                  :placeholder="is_determine_num=='1' ? '請輸入資產編號' : '請輸入資產名稱'" v-model="no_cal_keyword">
+                  :placeholder="is_determine_num ? '請輸入資產編號' : '請輸入資產名稱'" v-model="no_cal_keyword">
               </div>
-              <div class="mb-3" v-if="is_determine_num=='0'">
+              <div class="mb-3" v-if="!is_determine_num">
                 <!-- 資產分類(名稱) -->
                 <label for="exampleFormControlInput1" class="form-label"><b>
                     <BIconColumns style="vertical-align:text-top;" class="icon" /> 資產分類(名稱)
@@ -237,24 +321,23 @@
                   <option v-for="item, index in columns" v-bind:key="index">{{ item }}</option>
                 </select>
                 <label for="exampleFormControlInput1" class="form-check-label"><b>
-                    {{ is_determine_num=='1' ? "請輸入不計入折舊費用計算的資產編號抬頭代表號：" : "請輸入不計入折舊費用計算的資產名稱：" }}<br>( 若需排除多筆資料，可使用分號分隔 )
+                    {{ is_determine_num ? "請輸入不計入折舊費用計算的資產編號抬頭代表號：" : "請輸入不計入折舊費用計算的資產名稱：" }}<br>( 若需排除多筆資料，可使用分號分隔 )
                   </b></label>
                 <input type="text" id="determine_num1" class="form-control"
-                  :placeholder="is_determine_num=='1' ? '請輸入資產編號' : '請輸入資產名稱'" v-model="no_cal_keyword">
+                  :placeholder="is_determine_num ? '請輸入資產編號' : '請輸入資產名稱'" v-model="no_cal_keyword">
               </div>
             </div>
           </div>
         </div>
 
         <!-- 測試用 -->
-        <input type="text" id="determine_num1" class="form-control"
-                  placeholder="測試日期" v-model="testDate">
+        <input type="text" id="determine_num1" class="form-control" placeholder="測試日期" v-model="testDate">
       </div>
     </div>
   </div>
 
   <footer class="footer mt-auto">
-    <p class="text-muted" style="margin: 0px;text-align: center;">版本：0.2.2</p>
+    <p class="text-muted" style="margin: 0px;text-align: center;">版本：0.2.4</p>
   </footer>
 
 </template>
@@ -299,9 +382,9 @@ export default {
       dep_start_date_col: "", // 折舊起始日期
       amount_of_this_period_col: "", // 本期提列數
       no_cal_keyword: "", // 欲排除之會科關鍵字
-      dep_trial_way: "0", // 折舊起算方式, 0=>15天為期, 1=>下個月計算
-      input_isConnectFile: false,
-      is_determine_num: "1", // 是否依會科判斷
+      dep_trial_way: false, // 折舊起算方式, 0=>15天為期, 1=>下個月計算
+      input_isConnectFile: "",
+      is_determine_num: true, // 是否依會科判斷
       save_dir: "", // 儲存路徑
       is_no_need_asset_filter: false, // 不需排除會科
       is_res_val_empty: false, // 無預留殘值
@@ -312,10 +395,15 @@ export default {
       str_columns: [],
       val_columns: [],
       columns: [],
-      // help_1:false,
+      help_1: false,
+      help_2: false,
+      help_3: false,
+      help_4: false,
+      help_5: false,
+      help_6: false,
 
       // 測試用
-      testDate:"",
+      testDate: "",
     }
   },
   components: {
@@ -449,7 +537,7 @@ export default {
       },
       deep: true
     },
-    testDate:{
+    testDate: {
       handler(val) {
         if (typeof window.Alteryx !== 'undefined') {
           window.Alteryx.Gui.Manager.getDataItem("testDate").setValue(val)
@@ -487,9 +575,9 @@ export default {
           manager.addDataItem(is_durable_period_year)
           var no_cal_keyword = new AlteryxDataItems.SimpleString('no_cal_keyword')
           manager.addDataItem(no_cal_keyword)
-          var is_determine_num = new AlteryxDataItems.SimpleString('is_determine_num')
+          var is_determine_num = new AlteryxDataItems.SimpleBool('is_determine_num')
           manager.addDataItem(is_determine_num)
-          var dep_trial_way = new AlteryxDataItems.SimpleString('dep_trial_way')
+          var dep_trial_way = new AlteryxDataItems.SimpleBool('dep_trial_way')
           manager.addDataItem(dep_trial_way)
           var save_dir = new AlteryxDataItems.SimpleString('save_dir')
           manager.addDataItem(save_dir)
@@ -522,21 +610,21 @@ export default {
           this.is_no_need_asset_filter = manager.getDataItem("is_no_need_asset_filter").getValue()
           this.quarter_month = manager.getDataItem("quarter_month").getValue()
           this.testDate = manager.getDataItem("testDate").getValue()
-          
-          if (this.is_no_need_asset_filter == "") {
+
+          if (this.is_no_need_asset_filter === "") {
             this.is_no_need_asset_filter = false
           }
-          if (this.is_res_val_empty == "") {
+          if (this.is_res_val_empty === "") {
             this.is_res_val_empty = false
           }
-          if (this.is_determine_num == "") {
-            this.is_determine_num = "1"
+          if (this.is_determine_num === "") {
+            this.is_determine_num = true
           }
-          if (this.is_durable_period_year == "") {
+          if (this.is_durable_period_year === "") {
             this.is_durable_period_year = false
           }
-          if (this.dep_trial_way == "") {
-            this.dep_trial_way = "0"
+          if (this.dep_trial_way === "") {
+            this.dep_trial_way = false
           }
           // Load Income Field
           let str_type = ["String", "WString", "V_String", "V_WString", "Date", "Time", "DateTime"]
