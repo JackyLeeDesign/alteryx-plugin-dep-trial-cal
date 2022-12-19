@@ -17,13 +17,17 @@ const dest_path        = path.join(__dirname,"DepTrialCal","DepTrialCal","Suppor
  
 var cmds   = []
 var macros = fs.readdirSync(source_path).filter(Element=>{ return path.extname(Element)== ".yxmc" })
-
+var macro_other_files = fs.readdirSync(source_path).filter(Element=>{ return path.extname(Element)== ".csv" })
 console.log("Macros:",macros)
 
 if (process.env.NODE_ENV == 'production'){
     //Pack Macro
     macros.forEach(element=>{
         let cmd = ` "${alteryx_path}"  /Lock "${source_path}\\${element}" "${dest_path}\\${element}"`
+        cmds.push(cmd)
+    })
+    macro_other_files.forEach(element=>{
+        let cmd = ` copy "${source_path}\\${element}" "${dest_path}\\${element}"`
         cmds.push(cmd)
     })
 } else {

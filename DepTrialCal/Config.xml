@@ -5,7 +5,7 @@
       <Name>折舊費用試算工具</Name>
       <Description>依客戶所提供之財務目錄進行試算。
       (註:請關閉所有正在執行之工具 workflow，再執行安裝)</Description>
-      <ToolVersion>0.2.6</ToolVersion>
+      <ToolVersion>0.5.5</ToolVersion>
       <CategoryName>PwC DEV Tools Test</CategoryName>
       <Author>Assurance Innovation and Transformation</Author>
       <Icon>DepTrialCal/icon.png</Icon>
