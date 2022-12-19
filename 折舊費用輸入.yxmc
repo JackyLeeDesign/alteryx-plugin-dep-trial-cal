@@ -1,0 +1,881 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2020.4">
+  <Nodes>
+    <Node ToolID="4">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="30">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="1470" y="438" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>C:\Users\JYKL\AppData\Local\Temp\Engine_2376_5e0168eea3b045b597575d6ca341a846_\Engine_15120_d677b4d6aa2a4d7ba1bbd90d756cd79c_.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <View1>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
+    <Node ToolID="37">
+      <GuiSettings>
+        <Position x="1350" y="438" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Value name="Ranges">7+</Value>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <Dependencies>
+          <Implicit />
+        </Dependencies>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="F1" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F2" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F3" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F4" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F5" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F6" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F7" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F8" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F9" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F10" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F11" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="Double" />
+            <Field name="F12" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_String" />
+            <Field name="F13" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F14" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F15" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F16" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F17" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F18" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F19" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F20" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F21" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F22" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F23" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F24" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F25" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F26" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F27" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F28" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F29" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F30" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F31" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_String" />
+            <Field name="F32" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F33" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F34" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+            <Field name="F35" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings Macro="SelectRecords.yxmc" />
+    </Node>
+    <Node ToolID="39">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="1325" y="197" width="186" height="217" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>輸入起始列</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="38">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
+            <Position x="1350" y="246" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>connectInputPathMapping</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="40">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="1350" y="330" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="3">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="53" y="352" width="1016" height="313" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>輸入欄位所在行</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="5">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
+            <Position x="78" y="401" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name>filed1</Name>
+              <DefaultAnnotationText>filed1</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="6">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="89" y="497" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="7">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.TextInput.TextInput">
+            <Position x="918" y="582" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <NumRows value="7" />
+              <Fields>
+                <Field name="origin_filed" />
+                <Field name="new_field" />
+              </Fields>
+              <Data>
+                <r>
+                  <c>field1</c>
+                  <c>pwc_field1</c>
+                </r>
+                <r>
+                  <c>field2</c>
+                  <c>pwc_field2</c>
+                </r>
+                <r>
+                  <c>field3</c>
+                  <c>pwc_field3</c>
+                </r>
+                <r>
+                  <c>field4</c>
+                  <c>pwc_field4</c>
+                </r>
+                <r>
+                  <c>field5</c>
+                  <c>pwc_field5</c>
+                </r>
+                <r>
+                  <c>field6</c>
+                  <c>pwc_field6</c>
+                </r>
+                <r>
+                  <c>field7</c>
+                  <c>pwc_field7</c>
+                </r>
+              </Data>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText />
+              <Left value="False" />
+            </Annotation>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="origin_filed" size="6" source="TextInput:" type="String" />
+                <Field name="new_field" size="10" source="TextInput:" type="String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextInput" />
+        </Node>
+        <Node ToolID="10">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
+            <Position x="221" y="402" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>connectInputPathMapping</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="11">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
+            <Position x="366" y="401" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>connectInputPathMapping</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="12">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="234" y="498" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="13">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="378" y="498" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="14">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
+            <Position x="498" y="402" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>connectInputPathMapping</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="15">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="510" y="498" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="16">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
+            <Position x="618" y="402" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>connectInputPathMapping</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="17">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="630" y="498" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="20">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="762" y="498" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="21">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
+            <Position x="906" y="402" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>connectInputPathMapping</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="22">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+            <Position x="918" y="498" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Update Value</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+        <Node ToolID="31">
+          <GuiSettings Plugin="AlteryxGuiToolkit.Questions.TextBox.QuestionTextBox">
+            <Position x="750" y="402" width="59" height="59" />
+          </GuiSettings>
+          <Properties>
+            <Configuration />
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>Text Box (31)</DefaultAnnotationText>
+              <Left value="False" />
+            </Annotation>
+          </Properties>
+        </Node>
+      </ChildNodes>
+    </Node>
+    <Node ToolID="2">
+      <GuiSettings Plugin="AlteryxGuiToolkit.ToolContainer.ToolContainer">
+        <Position x="56" y="65" width="155" height="133" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Caption>讀取財報檔案</Caption>
+          <Style TextColor="#314c4a" FillColor="#ecf2f2" BorderColor="#314c4a" Transparency="25" Margin="25" />
+          <Disabled value="False" />
+          <Folded value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <ChildNodes>
+        <Node ToolID="9">
+          <GuiSettings Plugin="AlteryxBasePluginsGui.MacroInput.MacroInput">
+            <Position x="114" y="114" />
+          </GuiSettings>
+          <Properties>
+            <Configuration>
+              <UseFileInput value="True" />
+              <Name>Input</Name>
+              <Abbrev />
+              <ShowFieldMap value="False" />
+              <Optional value="False" />
+              <FileInput>
+                <Configuration>
+                  <Passwords />
+                  <File OutputFileName="" RecordLimit="" SearchSubDirs="False" FileFormat="25">C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`</File>
+                  <FormatSpecificOptions>
+                    <FirstRowData>False</FirstRowData>
+                    <ImportLine>1</ImportLine>
+                  </FormatSpecificOptions>
+                </Configuration>
+              </FileInput>
+            </Configuration>
+            <Annotation DisplayMode="0">
+              <Name />
+              <DefaultAnnotationText>B公司-PP_E變動表與財產目錄.xlsx
+Query=`-3 110年財產目錄$`</DefaultAnnotationText>
+              <Left value="True" />
+            </Annotation>
+            <Dependencies>
+              <Implicit />
+            </Dependencies>
+            <MetaInfo connection="Output">
+              <RecordInfo>
+                <Field name="F1" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F2" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F3" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F4" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F5" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F6" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F7" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F8" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F9" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F10" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F11" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="Double" />
+                <Field name="F12" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_String" />
+                <Field name="F13" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F14" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F15" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F16" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F17" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F18" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F19" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F20" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F21" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F22" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F23" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F24" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F25" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F26" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F27" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F28" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F29" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F30" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F31" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_String" />
+                <Field name="F32" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F33" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F34" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_WString" />
+                <Field name="F35" size="255" source="File: C:\Users\JYKL\Desktop\Alteryx\折舊費用重新計算\Data\ST\B公司-PP_E變動表與財產目錄.xlsx|||`-3 110年財產目錄$`" type="V_String" />
+              </RecordInfo>
+            </MetaInfo>
+          </Properties>
+          <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroInput" />
+        </Node>
+      </ChildNodes>
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="37" Connection="Output" />
+      <Destination ToolID="30" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="38" Connection="Question" />
+      <Destination ToolID="40" Connection="Question" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="40" Connection="Action" />
+      <Destination ToolID="37" Connection="Action" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="9" Connection="Output" />
+      <Destination ToolID="37" Connection="Input" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="5" Connection="Question" />
+      <Destination ToolID="6" Connection="Question" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="6" Connection="Action" />
+      <Destination ToolID="7" Connection="Action" />
+    </Connection>
+    <Connection name="#3">
+      <Origin ToolID="12" Connection="Action" />
+      <Destination ToolID="7" Connection="Action" />
+    </Connection>
+    <Connection name="#4">
+      <Origin ToolID="13" Connection="Action" />
+      <Destination ToolID="7" Connection="Action" />
+    </Connection>
+    <Connection name="#5">
+      <Origin ToolID="15" Connection="Action" />
+      <Destination ToolID="7" Connection="Action" />
+    </Connection>
+    <Connection name="#6">
+      <Origin ToolID="17" Connection="Action" />
+      <Destination ToolID="7" Connection="Action" />
+    </Connection>
+    <Connection name="#7">
+      <Origin ToolID="20" Connection="Action" />
+      <Destination ToolID="7" Connection="Action" />
+    </Connection>
+    <Connection name="#8">
+      <Origin ToolID="22" Connection="Action" />
+      <Destination ToolID="7" Connection="Action" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="10" Connection="Question" />
+      <Destination ToolID="12" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="11" Connection="Question" />
+      <Destination ToolID="13" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="14" Connection="Question" />
+      <Destination ToolID="15" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="16" Connection="Question" />
+      <Destination ToolID="17" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="21" Connection="Question" />
+      <Destination ToolID="22" Connection="Question" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="31" Connection="Question" />
+      <Destination ToolID="20" Connection="Question" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <Constants>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Macro Input (9)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>filed1</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Text Box (10)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Text Box (11)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Text Box (14)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Text Box (16)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Text Box (21)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Text Box (31)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>Text Box (38)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+    </Constants>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>折舊費用輸入</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+    <RuntimeProperties>
+      <Actions>
+        <NoCondition>
+          <Type>NoCondition</Type>
+          <Description>(Always Run)</Description>
+          <True>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="6" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>7/Data/r[1]/c[1]</Destination>
+              <Mapping>Update Cell</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration>row	1
+column	1</DynamicConfiguration>
+              <DefaultConfiguration value="True" />
+            </Action>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="12" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>7/Data/r[1]/c[1]</Destination>
+              <Mapping>Update Cell</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration>row	1
+column	1</DynamicConfiguration>
+              <DefaultConfiguration value="True" />
+            </Action>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="13" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>7/Data/r[1]/c[1]</Destination>
+              <Mapping>Update Cell</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration>row	1
+column	1</DynamicConfiguration>
+              <DefaultConfiguration value="True" />
+            </Action>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="15" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>7/Data/r[1]/c[1]</Destination>
+              <Mapping>Update Cell</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration>row	1
+column	1</DynamicConfiguration>
+              <DefaultConfiguration value="True" />
+            </Action>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="17" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>7/Data/r[1]/c[1]</Destination>
+              <Mapping>Update Cell</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration>row	1
+column	1</DynamicConfiguration>
+              <DefaultConfiguration value="True" />
+            </Action>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="20" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>7/Data/r[1]/c[1]</Destination>
+              <Mapping>Update Cell</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration>row	1
+column	1</DynamicConfiguration>
+              <DefaultConfiguration value="True" />
+            </Action>
+            <Action>
+              <Type>Dynamic</Type>
+              <Description />
+              <ToolId value="22" />
+              <Expression>{{INPUT}}</Expression>
+              <Destination>7/Data/r[1]/c[1]</Destination>
+              <Mapping>Update Cell</Mapping>
+              <Mode>Expression</Mode>
+              <DynamicConfiguration>row	1
+column	1</DynamicConfiguration>
+              <DefaultConfiguration value="True" />
+            </Action>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description />
+              <ToolId value="40" />
+              <Mode>Simple</Mode>
+              <Variable />
+              <Replace value="False" />
+              <Destination>37</Destination>
+            </Action>
+          </True>
+        </NoCondition>
+      </Actions>
+      <Questions>
+        <Question>
+          <Type>Tab</Type>
+          <Description>Questions</Description>
+          <Name>Tab (4)</Name>
+          <ToolId value="4" />
+          <Questions>
+            <Question>
+              <Type>MacroInput</Type>
+              <Description />
+              <Name>Macro Input (9)</Name>
+              <ToolId value="9" />
+            </Question>
+            <Question>
+              <Type>TextBox</Type>
+              <Description>資產分類(編號)</Description>
+              <Name>filed1</Name>
+              <ToolId value="5" />
+              <Default />
+              <Password value="False" />
+              <Multiline value="False" />
+              <Hidden value="False" />
+            </Question>
+            <Question>
+              <Type>TextBox</Type>
+              <Description>固定資產成本</Description>
+              <Name>Text Box (10)</Name>
+              <ToolId value="10" />
+              <Default />
+              <Password value="False" />
+              <Multiline value="False" />
+              <Hidden value="False" />
+            </Question>
+            <Question>
+              <Type>TextBox</Type>
+              <Description>耐用年限(折舊率)</Description>
+              <Name>Text Box (11)</Name>
+              <ToolId value="11" />
+              <Default />
+              <Password value="False" />
+              <Multiline value="False" />
+              <Hidden value="False" />
+            </Question>
+            <Question>
+              <Type>TextBox</Type>
+              <Description>預留殘值</Description>
+              <Name>Text Box (14)</Name>
+              <ToolId value="14" />
+              <Default />
+              <Password value="False" />
+              <Multiline value="False" />
+              <Hidden value="False" />
+            </Question>
+            <Question>
+              <Type>TextBox</Type>
+              <Description>折舊起始日</Description>
+              <Name>Text Box (16)</Name>
+              <ToolId value="16" />
+              <Default />
+              <Password value="False" />
+              <Multiline value="False" />
+              <Hidden value="False" />
+            </Question>
+            <Question>
+              <Type>TextBox</Type>
+              <Description>本期提列數</Description>
+              <Name>Text Box (21)</Name>
+              <ToolId value="21" />
+              <Default />
+              <Password value="False" />
+              <Multiline value="False" />
+              <Hidden value="False" />
+            </Question>
+            <Question>
+              <Type>TextBox</Type>
+              <Description>折舊起算日(下個月起算/ 15天為期)</Description>
+              <Name>Text Box (31)</Name>
+              <ToolId value="31" />
+              <Default />
+              <Password value="False" />
+              <Multiline value="False" />
+              <Hidden value="False" />
+            </Question>
+            <Question>
+              <Type>TextBox</Type>
+              <Description>折舊起始日</Description>
+              <Name>Text Box (38)</Name>
+              <ToolId value="38" />
+              <Default />
+              <Password value="False" />
+              <Multiline value="False" />
+              <Hidden value="False" />
+            </Question>
+          </Questions>
+        </Question>
+      </Questions>
+      <ModuleType>Macro</ModuleType>
+      <MacroCustomHelp value="False" />
+      <MacroDynamicOutputFields value="False" />
+      <MacroImageStd value="39" />
+      <MacroInputs />
+      <MacroOutputs />
+      <Wiz_CustomHelp value="False" />
+      <Wiz_CustomGraphic value="False" />
+      <Wiz_ShowOutput value="True" />
+      <Wiz_OpenOutputTools>
+        <Tool ToolId="9" Selected="True" />
+        <Tool ToolId="30" Selected="False" />
+        <Tool ToolId="37" Selected="True" />
+      </Wiz_OpenOutputTools>
+      <Wiz_OutputMessage />
+      <Wiz_NoOutputFilesMessage />
+      <Wiz_ChainRunWizard />
+    </RuntimeProperties>
+  </Properties>
+</AlteryxDocument>
