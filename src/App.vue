@@ -391,7 +391,7 @@
   </div>
 
   <footer class="footer mt-auto">
-    <p class="text-muted" style="margin: 0px;text-align: center;">版本：1.0.0</p>
+    <p class="text-muted" style="margin: 0px;text-align: center;">版本：1.2.0</p>
   <br>
   </footer>
 
